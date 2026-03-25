@@ -1,3 +1,28 @@
+header {
+    background-color: red;
+    height: 50px;
+    color: white;
+    font-weight: 500;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+    justify-content: center;
+}
+
 body {
-    background-color: skyblue;
+    background-color: rgb(255, 255, 255);
+}
+
+footer {
+    background-color: black;
+    height: 50px;
+    position: sticky;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+    margin-bottom: auto;
 }
