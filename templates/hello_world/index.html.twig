@@ -11,8 +11,16 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
+    <twig:BootstrapButton 
+    text="Bootstrap est disponible !" 
+    type="info" 
+    link="#"/>
+
     <a class="btn btn-success">Je suis disponible, moi Bootstrap</a>
 
-    <twig:BootstrapButton />
+    <twig:BootstrapButton 
+    text="Bootstrap c'est nul !" 
+    type="danger" 
+    link="#"/>
 </div>
 {% endblock %}
