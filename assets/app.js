@@ -1,7 +1,7 @@
 import './stimulus_bootstrap.js';
 
 //IMPORT BOOTSTRAP
-import './bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '@popperjs/core';
 
 //IMPORT CSS dans l'application
