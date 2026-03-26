@@ -19,6 +19,11 @@
         <p>En format <strong>HTML</strong></p>
 
     </twig:BootstrapCard>
-    
+
+    {% set textFirstCapitalized = "Ma première lettre est en majuscule" %}
+    <p>{{ textFirstCapitalized|custom_capitalize }}</p>
+
+    {% set textFirstNotCapitalized = "Ma première lettre est en minuscule" %}
+    <p>{{ textFirstNotCapitalized|custom_capitalize(false) }}</p>
 </div>
 {% endblock %}
