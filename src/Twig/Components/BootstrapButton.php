@@ -14,10 +14,10 @@ final class BootstrapButton
     /**
      * Monte le composant de bouton Boostrap sur la vue HTML
      * 
-     * @param string $text Texte afficher dans le bouton
-     * @param string $type Type de Bouton = Dark, Light, Info, Danger, Warning, Success, Primary
-     * @param string $link Lien de redirection
-     * @param bool $outlined Défini le si le bouton est sans fond ou avec fond 
+     * @param string $text - Texte afficher dans le bouton
+     * @param string $type - Type de Bouton = Dark, Light, Info, Danger, Warning, Success, Primary
+     * @param string $link - Lien de redirection
+     * @param bool $outlined - Défini le si le bouton est sans fond ou avec fond 
      */
     public function mount(string $text, string $type, string $link, bool $outlined = false): void
     {
