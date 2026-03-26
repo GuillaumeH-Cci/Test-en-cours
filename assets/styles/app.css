@@ -1,28 +1,32 @@
-header {
-    background-color: red;
-    height: 50px;
-    color: white;
-    font-weight: 500;
+footer.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 h1 {
-    color: red;
+    color: var(--bs-danger);
     text-align: center;
-    justify-content: center;
 }
 
-body {
-    background-color: rgb(255, 255, 255);
+.nav-dot {
+    display: none;
 }
 
-footer {
-    background-color: black;
-    height: 50px;
-    position: sticky;
-    bottom: 0;
-    color: white;
-    text-align: center;
-    justify-content: center;
-    font-weight: 500;
-    margin-bottom: auto;
+@media screen and (min-width: 760px) {
+    .nav-dot {
+        display: block;
+        width: 2.2rem;
+        height: 2.2rem;
+        background-color: #000000;
+        position: absolute;
+        bottom: -50%;
+        border-radius: 50%;
+        border: 3px #ffffff solid;
+    }
+
+    nav.navbar .container {
+        position: relative;
+        justify-content: center;
+    }
 }
