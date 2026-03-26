@@ -11,6 +11,10 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         // Inject dependencies if needed
     }
 
+    /**
+     * On parcours tout le tableau et on check pour que chaque index soit par ou impair
+     * @param $value - La chaine de caractère que l'on souhaite modifier
+     */
     public function customCapitalize($value)
     {
         for ($i = 0; $i < strlen($value); $i++){
