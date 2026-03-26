@@ -11,8 +11,8 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
         // Inject dependencies if needed
     }
 
-    public function doSomething($value)
+    public function customCapitalize($value)
     {
-        // ...
+        return strtoupper($value);
     }
 }
