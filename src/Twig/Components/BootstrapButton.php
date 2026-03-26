@@ -8,14 +8,27 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 final class BootstrapButton
 {
     private string $_strText;
-    private string $_strType;
+    private string $_strType = '';
     private string $_strLink;
 
-    public function mount(string $text, string $type, string $link): void
+    /**
+     * Monte le composant de bouton Boostrap sur la vue HTML
+     * 
+     * @param string $text Texte afficher dans le bouton
+     * @param string $type Type de Bouton = Dark, Light, Info, Danger, Warning, Success, Primary
+     * @param string $link Lien de redirection
+     * @param bool $outlined Défini le si le bouton est sans fond ou avec fond 
+     */
+    public function mount(string $text, string $type, string $link, bool $outlined = false): void
     {
         $this->_strText = $text;
-        $this->_strType = $type;
         $this->_strLink = $link;
+
+        if ($outlined) {
+            $this->_strType = 'outline-';
+        }
+        
+        $this->_strType = $type;
     }
 
     /**
