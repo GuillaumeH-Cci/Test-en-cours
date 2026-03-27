@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Une erreur s'est produite{% endblock %}
+{% block title %}Zut ! Une erreur est survenue{% endblock %}
 
 {% block body %}
 
-    <h1>Une erreur s'est produite</h1>
+{# Accès à la page 404 en mode dev: https://localhost:8000/_error/404 #}
 
-    <p>
-        Désolé, une erreur est survenue lors du traitement de votre demande.
-    </p>
+<div class="text-center">
+    <h1>Zut ! Les hautes herbes sont bien vides ici...</h1>
+
+    <a class="btn btn-primary" href="{{ path('app_dashboard') }}">Retourner au tableau de bord</a>
+
+    <img class="w-100" src="{{ asset('images/404.png') }}" alt="Wild Missingno appeared!">
+</div>
 
 {% endblock %}

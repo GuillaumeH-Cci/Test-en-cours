@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pokemon;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,17 +20,24 @@ final class PokemonController extends AbstractController
     }
 
     #[Route('/pokemon/create', name: 'app_pokemon_create')]
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $strPokemonName = $request->query->get('name');
-        $strPokemonType = $request->query->get('type');
+        if($request->isMethod('POST')) {
 
-        // Création d'un objet Pokemon avec les données du formulaire
-        $objPokemon = new Pokemon();
-        $objPokemon ->setName($strPokemonName)
-                    ->setType($strPokemonType);
+            $strPokemonName     = $request->request->get('name');
+            $intPokemonNumber   = $request->request->get('number');
 
-        dd($request);
+            $objPokemon = new Pokemon();
+
+            $objPokemon ->setName($strPokemonName)
+                        ->setNumber($intPokemonNumber);
+
+            $entityManager->persist($objPokemon);
+
+            $entityManager->flush();
+
+            dd($objPokemon);
+        }
 
         return $this->render('pokemon/create.html.twig', [
             
