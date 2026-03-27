@@ -19,6 +19,8 @@ final class PokemonController extends AbstractController
     #[Route('/pokemon/create', name: 'app_pokemon_create')]
     public function create(): Response
     {
-        return $this->render('pokemon/create.html.twig');
+        return $this->render('pokemon/create.html.twig', [
+            
+        ]);
     }
 }

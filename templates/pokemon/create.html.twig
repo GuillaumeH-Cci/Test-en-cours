@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'une nouvelle fiche Pokémon{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h1>Créer une nouvelle fiche Pokémon</h1>
+    </div>
+
+    <div class="form">
+        <form action="{{ path('app_pokemon_create') }}" method="post">
+            <div>
+                <label for="name">Nom du Pokémon :</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="type">Type du Pokémon :</label>
+                <input type="text" id="type" name="type" required>
+            </div>
+            <div>
+                <label for="level">Niveau du Pokémon :</label>
+                <input type="number" id="level" name="level" required min="1">
+            </div>
+            <button type="submit">Créer</button>
+        </form>
+    </div>
+{% endblock %}
