@@ -23,20 +23,32 @@ final class PokemonController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         if($request->isMethod('POST')) {
+            $onError = false;
 
             $strPokemonName     = $request->request->get('name');
             $intPokemonNumber   = $request->request->get('number');
 
-            $objPokemon = new Pokemon();
+            if ($intPokemonNumber <= 0) {
 
-            $objPokemon ->setName($strPokemonName)
-                        ->setNumber($intPokemonNumber);
+                $onError = true;
 
-            $entityManager->persist($objPokemon);
+                // Stockage du message pour l'erreur
+                $this->addFlash('danger', 'Le numéro du pokémon doit être supérieur à 0.');
+            }
 
-            $entityManager->flush();
+            if (!$onError){
+                $objPokemon = new Pokemon();
 
-            dd($objPokemon);
+                $objPokemon ->setName($strPokemonName)
+                            ->setNumber($intPokemonNumber);
+
+                $entityManager->persist($objPokemon);
+
+                $entityManager->flush();
+
+                dd($objPokemon);
+            }
+            
         }
 
         return $this->render('pokemon/create.html.twig', [
