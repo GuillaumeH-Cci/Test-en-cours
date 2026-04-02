@@ -1,5 +1,6 @@
--- Active: 1775127922234@@127.0.0.1@5432@app
 <?php
+
+namespace App\Controller;
 
 use App\Entity\PokemonType;
 use App\Form\PokemonTypeCreateFormType;
@@ -16,7 +17,7 @@ final class PokemonTypeController extends AbstractController
     public function index(PokemonTypeRepository $pokemonTypeRepository): Response
     {
         $arrPokemonTypes = $pokemonTypeRepository->findAll();
-        $objNewType = new PokemonType();
+        $objNewType      = new PokemonType();
 
         // On modifie l'action par défaut (URL vers laquelle les données sont envoyées) du formulaire
         // $this->generateUrl permet de créer une URL (string) à partir du nom de la route
