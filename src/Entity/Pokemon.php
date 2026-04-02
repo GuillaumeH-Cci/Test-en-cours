@@ -25,6 +25,9 @@ class Pokemon
     /**
      * @var Collection<int, PokemonType>
      */
+    #[ORM\JoinTable('pokemon_pokemon_types')]
+    #[ORM\JoinColumn(name: 'ppt_pkm_id', referencedColumnName: 'pkm_id')]
+    #[ORM\InverseJoinColumn(name: 'ppt_pkt_id', referencedColumnName: 'pkm_id')]
     #[ORM\ManyToMany(targetEntity: PokemonType::class, inversedBy: 'pokemons')]
     private Collection $types;
 
