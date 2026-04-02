@@ -64,4 +64,22 @@ final class PokemonController extends AbstractController
             'pokemon'       => $pokemon
         ]);
     }
+
+    #[Route('/{id<\d+>}/update', name: 'update')]
+    public function update(Request $request, Pokemon $pokemon, EntityManagerInterface $entityManager): Response 
+    {
+        $updateForm = $this->createForm(PokemonCreateFormType::class, $pokemon);
+        $updateForm->handleRequest($request);
+
+        if($updateForm->isSubmitted() && $updateForm->isValid()){
+            $entityManager->flush();
+            $this->addFlash('success', 'Le Pokemon à bien été modifié');
+
+            return $this->redirectToRoute('app_pokemon_show', [
+                'id' => $pokemon->getId()
+            ]);
+        }
+
+        return $this->render('pokemon/create.html.twig');
+    }
 }
