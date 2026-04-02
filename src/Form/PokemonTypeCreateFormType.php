@@ -14,6 +14,7 @@ class PokemonTypeCreateFormType extends AbstractType
         $builder
             ->add('name')
             ->add('color')
+            ->add('submit')
         ;
     }
 
