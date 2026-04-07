@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
 
 class PokemonCreateFormType extends AbstractType
 {
@@ -29,7 +30,15 @@ class PokemonCreateFormType extends AbstractType
                 'label' => 'Type du Pokémon',
                 'class' => PokemonType::class,  // Classes utilisé pour les choix
                 'choice_label' => 'name',       
-                'multiple' => true              // Important a mettre : Autorise la selection multiple
+                'multiple' => true,             // Important a mettre : Autorise la selection multiple
+                'constraints' => [
+                    new Count(
+                        min: 1,
+                        max: 2,
+                        minMessage: 'Un Pokémon doit avoir au moins {{ limit }} type',
+                        maxMessage: 'Un Pokémon ne peut pas voir plus de {{ limit }} types',
+                    ),
+                ],
             ])
 
             ->add('submit', SubmitType::class, [
