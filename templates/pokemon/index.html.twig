@@ -17,8 +17,11 @@
             ] }}"
         >
         
-            <span class="badge text-bg-info rounded-pill">#{{ pokemon.number|fill_number('0', 3) }}</span>
-            <span class="badge text-bg-primary rounded-pill">{# pokemon.type #}</span>
+            <span class="badge text-bg-info badge-pill rounded-pill">#{{ pokemon.number|fill_number('0', 3) }}</span>
+            {% for type in pokemon.types %}
+            <span class="badge text-bg-primary badge-pill rounded-pill">{{ type.name }}</span>
+            {% endfor %}
+            </span>
 
         </twig:BootstrapCard>
 
