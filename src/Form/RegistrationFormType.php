@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -21,47 +20,49 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastname', TextType::class, [
-                'label' => 'Nom de Famille'
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse e-mail de connexion'
             ])
-
-            ->add('firstname', TextType::class, [
+            ->add('lastname', TextType::class, [
                 'label' => 'Prénom'
             ])
-
-            ->add('birthdate', DateType::class, [
+            ->add('firstname', TextType::class, [
+                'label' => 'Nom'
+            ])
+            ->add('birthdate', null, [
                 'label' => 'Date de naissance'
             ])
 
-            ->add('email', EmailType::class, [
-                'label' => 'E-mail'
-            ])
-
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Aggréer au termes d\'utilisation',
-                'mapped' => false,
-                'constraints' => [
+                'mapped'        => false,
+                'label'         => "Accepter les conditions d'utilisation",
+                'constraints'   => [
                     new IsTrue(
-                        message: 'Vous devez aggréer au termes d\'utilisation du site.',
+                        message: 'Vous devez accepter les conditions',
                     ),
                 ],
             ])
-            
+
             ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Ce champs doit obligatoirement être remplis.',
-                'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
-                'mapped' => false,
+                // instead of being set onto the object directly,
+                // this is read and encoded in the controller
+                'mapped'            => false,
+                'type'              => PasswordType::class,
+
+                'invalid_message'   => 'Les champs doivent être identiques', 
+                'required'          => true,
+
+                'first_options'     => ['label' => 'Mot de passe'],
+                'second_options'    => ['label' => 'Confirmer le mot de passe'],
+
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank(
-                        message: 'Entrer votre nouveau mot de passe',
+                        message: 'Saisir un mot de passe',
                     ),
                     new Length(
                         min: 6,
-                        minMessage: 'Votre mot de passe doit faire au moins {{ limit }} charactères',
+                        minMessage: 'Votre mot de passe doit faire au minimum {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         max: 4096,
                     ),

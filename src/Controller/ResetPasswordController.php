@@ -157,7 +157,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('dwwm@symfony.com', 'Isult-Bot'))
+            ->from(new Address('noreply@pokedwwm.net', 'Mot de passe PokeDWWM'))
             ->to((string) $user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
