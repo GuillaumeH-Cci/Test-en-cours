@@ -17,12 +17,11 @@
             ] }}"
         >
         
-            <span class="badge text-bg-info badge-pill rounded-pill">#{{ pokemon.number|fill_number('0', 3) }}</span>
+            <span class="badge text-bg-info badge-pill">#{{ pokemon.number|fill_number('0', 3) }}</span>
 
             {% for type in pokemon.types %}
-
-            <span class="badge rounded-pill"
-                    style="background-color: {{ type.color }}; color: {{ type.textColor }};">
+            <span class="badge badge-pill" 
+                style="background-color: {{ type.color }}; color: {{ type.textColor }};">
                 {{ type.name }}
             </span>
             {% endfor %}
