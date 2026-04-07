@@ -52,7 +52,7 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Ce champs doit obligatoirement être remplis.',
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le Mot de passe'],
+                'second_options' => ['label' => 'Confirmer le mot de passe'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
