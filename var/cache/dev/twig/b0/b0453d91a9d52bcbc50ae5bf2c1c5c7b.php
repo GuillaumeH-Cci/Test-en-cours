@@ -77,37 +77,46 @@ class __TwigTemplate_5382c7cf2a4b97845dfc80033579dc95 extends Template
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_create");
             yield "\" class=\"nav-link\">+ Ajouter un Pokémon</a>
                     </li>
-                    <li class=\"nav-item\">
+
+                    ";
+            // line 23
+            yield "                    ";
+            if ((($tmp = $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PROF")) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+                // line 24
+                yield "                    <li class=\"nav-item\">
                         <a href=\"";
-            // line 22
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_type");
-            yield "\" class=\"nav-link\">Types</a>
+                // line 25
+                yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_type");
+                yield "\" class=\"nav-link\">Types</a>
                     </li>
-                    
+                    ";
+            }
+            // line 28
+            yield "
                     <li class=\"nav-item\">
                         <a href=\"";
-            // line 26
+            // line 30
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\" class=\"nav-link\">Se déconnecter</a>
                     </li>
                     ";
         } else {
-            // line 29
+            // line 33
             yield "                    <li class=\"nav-item\">
                         <a href=\"";
-            // line 30
+            // line 34
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             yield "\" class=\"nav-link\">S'inscrire</a>
                     </li>
                     <li class=\"nav-item\">
                         <a href=\"";
-            // line 33
+            // line 37
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"nav-link\">Se connecter</a>
                     </li>
                     ";
         }
-        // line 36
+        // line 40
         yield "                </ul>
             </div>
             <div class=\"nav-dot\"></div>
@@ -144,7 +153,7 @@ class __TwigTemplate_5382c7cf2a4b97845dfc80033579dc95 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  111 => 36,  105 => 33,  99 => 30,  96 => 29,  90 => 26,  83 => 22,  77 => 19,  74 => 18,  71 => 17,  65 => 13,  53 => 4,  48 => 1,);
+        return array (  120 => 40,  114 => 37,  108 => 34,  105 => 33,  99 => 30,  95 => 28,  89 => 25,  86 => 24,  83 => 23,  77 => 19,  74 => 18,  71 => 17,  65 => 13,  53 => 4,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -169,10 +178,14 @@ class __TwigTemplate_5382c7cf2a4b97845dfc80033579dc95 extends Template
                     <li class=\"nav-item\">
                         <a href=\"{{ path('app_pokemon_create') }}\" class=\"nav-link\">+ Ajouter un Pokémon</a>
                     </li>
+
+                    {# Vérification si rôle PROF #}
+                    {% if is_granted('ROLE_PROF') %}
                     <li class=\"nav-item\">
                         <a href=\"{{ path('app_type') }}\" class=\"nav-link\">Types</a>
                     </li>
-                    
+                    {% endif %}
+
                     <li class=\"nav-item\">
                         <a href=\"{{ path('app_logout') }}\" class=\"nav-link\">Se déconnecter</a>
                     </li>

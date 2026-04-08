@@ -39,6 +39,13 @@ class Pokemon
     #[ORM\ManyToMany(targetEntity: PokemonType::class, inversedBy: 'pokemons')]
     private Collection $types;
 
+    #[ORM\ManyToOne(inversedBy: 'pokemons', targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'pkm_created_by', referencedColumnName: 'usr_id', nullable: false)]  //< 1ère étape, il faut nullable:true
+                                                                                                //< Ensuite faire la migration
+                                                                                                //< Modifier les valeurs dans la table pokemons (pkm_created_by)
+                                                                                                //< Passer le champ en nullable:false et refaire les migrations
+    private ?User $createdBy = null;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
@@ -93,6 +100,18 @@ class Pokemon
     public function removeType(PokemonType $type): static
     {
         $this->types->removeElement($type);
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }
