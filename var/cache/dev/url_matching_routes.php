@@ -28,6 +28,8 @@ return [
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
         '/reset-password' => [[['_route' => 'app_forgot_password_request', '_controller' => 'App\\Controller\\ResetPasswordController::request'], null, null, null, false, false, null]],
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
+        '/user' => [[['_route' => 'app_user', '_controller' => 'App\\Controller\\UserController::index'], null, null, null, false, false, null]],
+        '/user/create' => [[['_route' => 'app_user_create', '_controller' => 'App\\Controller\\UserController::create'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -54,6 +56,10 @@ return [
                     .'|(\\d+)/update(*:239)'
                 .')'
                 .'|/reset\\-password/reset(?:/([^/]++))?(*:284)'
+                .'|/user/(?'
+                    .'|(\\d+)(*:306)'
+                    .'|(\\d+)/roles(*:325)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -67,8 +73,10 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         219 => [[['_route' => 'app_pokemon_show', '_controller' => 'App\\Controller\\PokemonController::show'], ['id'], null, null, false, true, null]],
         239 => [[['_route' => 'app_pokemon_update', '_controller' => 'App\\Controller\\PokemonController::update'], ['id'], null, null, false, false, null]],
-        284 => [
-            [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
+        284 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        306 => [[['_route' => 'app_user_update', '_controller' => 'App\\Controller\\UserController::update'], ['id'], null, null, false, true, null]],
+        325 => [
+            [['_route' => 'app_user_roles', '_controller' => 'App\\Controller\\UserController::updateRoles'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
