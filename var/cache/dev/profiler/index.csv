@@ -112,3 +112,6 @@ e4e933,127.0.0.1,GET,http://localhost:8000/pokemon/create,1774619014,,500,reques
 aea33e,127.0.0.1,POST,http://localhost:8000/pokemon/create,1774619080,,200,request
 b201b6,127.0.0.1,POST,http://localhost:8000/pokemon/create,1774619081,,200,request
 b5e3ff,127.0.0.1,GET,http://localhost:8000/pokemon/create,1774619104,,200,request
+3c69a5,127.0.0.1,GET,http://localhost:8000/pokemon/create,1775632523,,200,request
+99e5c5,127.0.0.1,GET,http://localhost:8000/,1775632529,,200,request
+c09f13,127.0.0.1,GET,http://localhost:8000/pokemon/,1775632532,,200,request
