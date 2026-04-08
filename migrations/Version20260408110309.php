@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20260408094651 extends AbstractMigration
+final class Version20260408110309 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -19,8 +19,9 @@ final class Version20260408094651 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE pokemons ADD pkm_created_by INT DEFAULT NULL');
+        $this->addSql('UPDATE pokemons SET pkm_created_by = 1 WHERE pkm_created_by IS NULL');
+        $this->addSql('ALTER TABLE pokemons ALTER COLUMN pkm_created_by SET NOT NULL');
         $this->addSql('ALTER TABLE pokemons ADD CONSTRAINT FK_3FD8B03DB2CD285B FOREIGN KEY (pkm_created_by) REFERENCES "users" (usr_id) NOT DEFERRABLE');
         $this->addSql('CREATE INDEX IDX_3FD8B03DB2CD285B ON pokemons (pkm_created_by)');
     }
