@@ -28,6 +28,7 @@
       <parameter key="TwigComponentBundle">Symfony\UX\TwigComponent\TwigComponentBundle</parameter>
       <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
       <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
+      <parameter key="ZenstruckFoundryBundle">Zenstruck\Foundry\ZenstruckFoundryBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -90,6 +91,10 @@
         <parameter key="path">C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfonycasts\reset-password-bundle\src</parameter>
         <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
       </parameter>
+      <parameter key="ZenstruckFoundryBundle" type="collection">
+        <parameter key="path">C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\zenstruck\foundry</parameter>
+        <parameter key="namespace">Zenstruck\Foundry</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
@@ -146,6 +151,10 @@
       </parameter>
       <parameter key="SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle" type="collection">
         <parameter key="all">true</parameter>
+      </parameter>
+      <parameter key="Zenstruck\Foundry\ZenstruckFoundryBundle" type="collection">
+        <parameter key="dev">true</parameter>
+        <parameter key="test">true</parameter>
       </parameter>
     </parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
@@ -276,6 +285,10 @@
         </parameter>
       </parameter>
     </parameter>
+    <parameter key="zenstruck_foundry.faker.seed">null</parameter>
+    <parameter key="zenstruck_foundry.faker.manage_seed">true</parameter>
+    <parameter key="zenstruck_foundry.persistence.flush_once">true</parameter>
+    <parameter key="zenstruck_foundry.enable_auto_refresh_with_lazy_objects">false</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -506,6 +519,14 @@
     </service>
     <service id="App\Security\Voter\PokemonVoter" class="App\Security\Voter\PokemonVoter" autowire="true" autoconfigure="true">
       <tag name="security.voter"/>
+    </service>
+    <service id="App\Story\AppStory" class="App\Story\AppStory" autowire="true" autoconfigure="true">
+      <tag name="foundry.story.fixture">
+        <attribute name="name">main</attribute>
+        <attribute name="groups">
+        </attribute>
+      </tag>
+      <tag name="foundry.story"/>
     </service>
     <service id="App\Twig\Components\BootstrapButton" class="App\Twig\Components\BootstrapButton" shared="false" autowire="true" autoconfigure="true">
       <tag name="twig.component" expose_public_props="true" attributes_var="attributes"/>
@@ -2709,6 +2730,7 @@
           <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\monolog-bundle\src/translations</argument>
           <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\maker-bundle/translations</argument>
           <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\ux-twig-component/translations</argument>
+          <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\zenstruck\foundry/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2731,6 +2753,7 @@
             <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\monolog-bundle\src/translations</argument>
             <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\maker-bundle/translations</argument>
             <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\symfony\ux-twig-component/translations</argument>
+            <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours\vendor\zenstruck\foundry/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -8190,6 +8213,145 @@
       <argument>3600</argument>
       <argument>3600</argument>
     </service>
+    <service id=".zenstruck_foundry.faker" class="Faker\Generator">
+      <factory class="Faker\Factory" method="create"/>
+    </service>
+    <service id=".zenstruck_foundry.story_registry" class="Zenstruck\Foundry\StoryRegistry">
+      <argument type="tagged_iterator" tag="foundry.story"/>
+      <argument type="collection"/>
+    </service>
+    <service id=".zenstruck_foundry.instantiator" class="Zenstruck\Foundry\Object\Instantiator" constructor="withConstructor"/>
+    <service id=".zenstruck_foundry.faker.adapter" class="Zenstruck\Foundry\FakerAdapter">
+      <argument type="service" id=".zenstruck_foundry.faker"/>
+      <argument>null</argument>
+      <argument>%env(default::int:FOUNDRY_FAKER_SEED)%</argument>
+      <argument>true</argument>
+    </service>
+    <service id=".zenstruck_foundry.configuration" class="Zenstruck\Foundry\Configuration" public="true">
+      <argument type="service" id=".zenstruck_foundry.in_memory.factory_registry"/>
+      <argument type="service" id=".zenstruck_foundry.faker.adapter"/>
+      <argument type="service" id=".zenstruck_foundry.instantiator"/>
+      <argument type="service" id=".zenstruck_foundry.story_registry"/>
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+      <argument>true</argument>
+      <argument type="service" id=".zenstruck_foundry.in_memory.repository_registry"/>
+      <argument>null</argument>
+      <argument>false</argument>
+      <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.story" class="Zenstruck\Foundry\Maker\MakeStory">
+      <tag name="maker.command"/>
+      <argument type="service" id=".zenstruck_foundry.maker.namespace_guesser"/>
+      <argument>Story</argument>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory" class="Zenstruck\Foundry\Maker\MakeFactory">
+      <tag name="maker.command"/>
+      <argument type="service" id="kernel"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.generator"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.autoCompleter"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.candidate_classes_extractor"/>
+      <argument>Factory</argument>
+      <argument>true</argument>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.orm_default_properties_guesser" class="Zenstruck\Foundry\Maker\Factory\ORMDefaultPropertiesGuesser">
+      <tag name="foundry.make_factory.default_properties_guesser"/>
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.factory_class_map"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.generator"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.doctrine_scalar_fields_default_properties_guesser" class="Zenstruck\Foundry\Maker\Factory\DoctrineScalarFieldsDefaultPropertiesGuesser">
+      <tag name="foundry.make_factory.default_properties_guesser"/>
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.factory_class_map"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.generator"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.object_default_properties_guesser" class="Zenstruck\Foundry\Maker\Factory\ObjectDefaultPropertiesGuesser">
+      <tag name="foundry.make_factory.default_properties_guesser"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.factory_class_map"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.generator"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.factory_class_map" class="Zenstruck\Foundry\Maker\Factory\FactoryClassMap">
+      <argument type="tagged_iterator" tag="foundry.factory"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.generator" class="Zenstruck\Foundry\Maker\Factory\FactoryGenerator">
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+      <argument type="service" id="kernel"/>
+      <argument type="tagged_iterator" tag="foundry.make_factory.default_properties_guesser"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.factory_class_map"/>
+      <argument type="service" id=".zenstruck_foundry.maker.namespace_guesser"/>
+      <argument>false</argument>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.autoCompleter" class="Zenstruck\Foundry\Maker\Factory\NoPersistenceObjectsAutoCompleter">
+      <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours</argument>
+    </service>
+    <service id=".zenstruck_foundry.maker.factory.candidate_classes_extractor" class="Zenstruck\Foundry\Maker\Factory\FactoryCandidatesClassesExtractor">
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory.factory_class_map"/>
+    </service>
+    <service id=".zenstruck_foundry.maker.namespace_guesser" class="Zenstruck\Foundry\Maker\NamespaceGuesser">
+      <argument type="service" id=".zenstruck_foundry.persistence_manager" on-invalid="null"/>
+    </service>
+    <service id=".zenstruck_foundry.persistence_manager" class="Zenstruck\Foundry\Persistence\PersistenceManager">
+      <argument type="tagged_iterator" tag=".foundry.persistence_strategy"/>
+      <argument type="service" id=".zenstruck_foundry.persistence.reset_database_manager"/>
+    </service>
+    <service id=".zenstruck_foundry.persistence.reset_database_manager" class="Zenstruck\Foundry\Persistence\ResetDatabase\ResetDatabaseManager">
+      <argument type="tagged_iterator" tag=".foundry.persistence.database_resetter"/>
+      <argument type="tagged_iterator" tag=".foundry.persistence.schema_resetter"/>
+    </service>
+    <service id=".zenstruck_foundry.command.load_fixtures" class="Zenstruck\Foundry\Command\LoadFixturesCommand">
+      <tag name="console.command" command="foundry:load-fixtures|foundry:load-stories|foundry:load-story" description="Load stories which are marked with #[AsFixture] attribute."/>
+      <tag name="container.no_preload"/>
+      <argument type="collection">
+        <argument key="main">App\Story\AppStory</argument>
+      </argument>
+      <argument type="collection"/>
+      <argument type="tagged_iterator" tag=".foundry.persistence.database_resetter"/>
+      <argument type="service" id="kernel"/>
+      <call method="setName">
+        <argument>foundry:load-fixtures</argument>
+      </call>
+      <call method="setAliases">
+        <argument type="collection">
+          <argument>foundry:load-stories</argument>
+          <argument>foundry:load-story</argument>
+        </argument>
+      </call>
+      <call method="setDescription">
+        <argument>Load stories which are marked with #[AsFixture] attribute.</argument>
+      </call>
+    </service>
+    <service id=".zenstruck_foundry.persistence_strategy.orm" class="Zenstruck\Foundry\ORM\OrmV3PersistenceStrategy">
+      <tag name=".foundry.persistence_strategy"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id=".zenstruck_foundry.persistence.database_resetter.orm.abstract" class="Zenstruck\Foundry\ORM\ResetDatabase\BaseOrmResetter" abstract="true">
+      <argument type="service" id="doctrine"/>
+      <argument type="collection">
+        <argument>default</argument>
+      </argument>
+      <argument type="collection">
+        <argument>default</argument>
+      </argument>
+    </service>
+    <service id="Zenstruck\Foundry\ORM\ResetDatabase\OrmResetter" class="Zenstruck\Foundry\ORM\ResetDatabase\SchemaDatabaseResetter">
+      <tag name=".foundry.persistence.database_resetter"/>
+      <tag name=".foundry.persistence.schema_resetter"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="collection">
+        <argument>default</argument>
+      </argument>
+      <argument type="collection">
+        <argument>default</argument>
+      </argument>
+    </service>
+    <service id=".zenstruck_foundry.in_memory.factory_registry" class="Zenstruck\Foundry\InMemory\InMemoryFactoryRegistry">
+      <tag name="container.decorator" id=".zenstruck_foundry.factory_registry" inner=".zenstruck_foundry.in_memory.factory_registry.inner"/>
+      <argument type="service" id=".zenstruck_foundry.in_memory.factory_registry.inner"/>
+    </service>
+    <service id=".zenstruck_foundry.in_memory.repository_registry" class="Zenstruck\Foundry\InMemory\InMemoryRepositoryRegistry">
+      <argument type="service" id=".service_locator.dpiLQ5O"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AuthController" class="App\Controller\AuthController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AuthController" class="App\Controller\AuthController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\AuthController.0.App\Controller\AuthController" class="App\Controller\AuthController" autowire="true" abstract="true"/>
@@ -8252,6 +8414,9 @@
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Security\Core\Authorization\Voter\VoterInterface.0.App\Security\Voter\PokemonVoter" class="App\Security\Voter\PokemonVoter" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Security\Voter\PokemonVoter" class="App\Security\Voter\PokemonVoter" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Zenstruck\Foundry\Story.0.App\Story\AppStory" class="App\Story\AppStory" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Story\AppStory.0.App\Story\AppStory" class="App\Story\AppStory" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Story\AppStory" class="App\Story\AppStory" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Twig\Components\BootstrapButton.0.App\Twig\Components\BootstrapButton" class="App\Twig\Components\BootstrapButton" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Twig\Components\BootstrapButton" class="App\Twig\Components\BootstrapButton" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Twig\Components\BootstrapCard.0.App\Twig\Components\BootstrapCard" class="App\Twig\Components\BootstrapCard" autowire="true" abstract="true"/>
@@ -8774,6 +8939,34 @@
       </call>
       <call method="setDescription">
         <argument>Create a new Webhook</argument>
+      </call>
+    </service>
+    <service id="maker.auto_command.make_story" class="Symfony\Bundle\MakerBundle\Command\MakerCommand">
+      <tag name="console.command" command="make:story" description="Creates a Foundry story"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id=".zenstruck_foundry.maker.story"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.generator"/>
+      <argument type="service" id="maker.template_linter"/>
+      <call method="setName">
+        <argument>make:story</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Creates a Foundry story</argument>
+      </call>
+    </service>
+    <service id="maker.auto_command.make_factory" class="Symfony\Bundle\MakerBundle\Command\MakerCommand">
+      <tag name="console.command" command="make:factory" description="Creates a Foundry model factory for a Doctrine entity class or a regular object"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id=".zenstruck_foundry.maker.factory"/>
+      <argument type="service" id="maker.file_manager"/>
+      <argument type="service" id="maker.generator"/>
+      <argument type="service" id="maker.template_linter"/>
+      <call method="setName">
+        <argument>make:factory</argument>
+      </call>
+      <call method="setDescription">
+        <argument>Creates a Foundry model factory for a Doctrine entity class or a regular object</argument>
       </call>
     </service>
     <service id=".service_locator.1vYpZ1B" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -9619,6 +9812,10 @@
         <argument key="BootstrapCard" type="service_closure" id="App\Twig\Components\BootstrapCard"/>
       </argument>
     </service>
+    <service id=".service_locator.dpiLQ5O" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id=".service_locator.6KVxCv0" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9789,10 +9986,6 @@
       <argument type="collection">
         <argument key="reverse_container" type="service_closure" id="reverse_container" on-invalid="ignore_uninitialized"/>
       </argument>
-    </service>
-    <service id=".service_locator.dpiLQ5O" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection"/>
     </service>
     <service id=".service_locator.6eloqTE" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -10136,6 +10329,9 @@
       <argument>0</argument>
       <argument>.</argument>
       <argument>,</argument>
+    </service>
+    <service id=".zenstruck_foundry.in_memory.factory_registry.inner" class="Zenstruck\Foundry\FactoryRegistry">
+      <argument type="tagged_iterator" tag="foundry.factory"/>
     </service>
     <service id="debug.security.event_dispatcher.main.inner" class="Symfony\Component\EventDispatcher\EventDispatcher"/>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
@@ -10696,6 +10892,16 @@
       <argument>false</argument>
       <argument type="service_closure" id="ux.twig_component.command.debug"/>
     </service>
+    <service id="..zenstruck_foundry.command.load_fixtures.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>foundry:load-fixtures</argument>
+      <argument type="collection">
+        <argument>foundry:load-stories</argument>
+        <argument>foundry:load-story</argument>
+      </argument>
+      <argument>Load stories which are marked with #[AsFixture] attribute.</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id=".zenstruck_foundry.command.load_fixtures"/>
+    </service>
     <service id=".maker.auto_command.make_auth.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>make:auth</argument>
       <argument type="collection"/>
@@ -10890,9 +11096,23 @@
       <argument>false</argument>
       <argument type="service_closure" id="maker.auto_command.make_webhook"/>
     </service>
+    <service id=".maker.auto_command.make_story.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>make:story</argument>
+      <argument type="collection"/>
+      <argument>Creates a Foundry story</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="maker.auto_command.make_story"/>
+    </service>
+    <service id=".maker.auto_command.make_factory.lazy" class="Symfony\Component\Console\Command\LazyCommand">
+      <argument>make:factory</argument>
+      <argument type="collection"/>
+      <argument>Creates a Foundry model factory for a Doctrine entity class or a regular object</argument>
+      <argument>false</argument>
+      <argument type="service_closure" id="maker.auto_command.make_factory"/>
+    </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.T2NvyVB"/>
+      <argument type="service" id=".service_locator.LUjLwUI"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -10988,6 +11208,9 @@
         <argument key="debug:security:role-hierarchy">security.command.role_hierarchy_dump</argument>
         <argument key="debug:twig-component">ux.twig_component.command.debug</argument>
         <argument key="reset-password:remove-expired">SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand</argument>
+        <argument key="foundry:load-fixtures">.zenstruck_foundry.command.load_fixtures</argument>
+        <argument key="foundry:load-stories">.zenstruck_foundry.command.load_fixtures</argument>
+        <argument key="foundry:load-story">.zenstruck_foundry.command.load_fixtures</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -11018,9 +11241,11 @@
         <argument key="make:security:form-login">maker.auto_command.make_security_form_login</argument>
         <argument key="make:security:custom">maker.auto_command.make_security_custom</argument>
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
+        <argument key="make:story">maker.auto_command.make_story</argument>
+        <argument key="make:factory">maker.auto_command.make_factory</argument>
       </argument>
     </service>
-    <service id=".service_locator.T2NvyVB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LUjLwUI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -11117,6 +11342,7 @@
         <argument key="security.command.role_hierarchy_dump" type="service_closure" id=".security.command.role_hierarchy_dump.lazy"/>
         <argument key="ux.twig_component.command.debug" type="service_closure" id=".ux.twig_component.command.debug.lazy"/>
         <argument key="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand" type="service_closure" id="SymfonyCasts\Bundle\ResetPassword\Command\ResetPasswordRemoveExpiredCommand"/>
+        <argument key=".zenstruck_foundry.command.load_fixtures" type="service_closure" id="..zenstruck_foundry.command.load_fixtures.lazy"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -11144,6 +11370,8 @@
         <argument key="maker.auto_command.make_security_form_login" type="service_closure" id=".maker.auto_command.make_security_form_login.lazy"/>
         <argument key="maker.auto_command.make_security_custom" type="service_closure" id=".maker.auto_command.make_security_custom.lazy"/>
         <argument key="maker.auto_command.make_webhook" type="service_closure" id=".maker.auto_command.make_webhook.lazy"/>
+        <argument key="maker.auto_command.make_story" type="service_closure" id=".maker.auto_command.make_story.lazy"/>
+        <argument key="maker.auto_command.make_factory" type="service_closure" id=".maker.auto_command.make_factory.lazy"/>
       </argument>
     </service>
     <service id="cache.app.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
@@ -11479,6 +11707,7 @@
     <service id="security.access.decision_manager" alias="debug.security.access.decision_manager"/>
     <service id="security.firewall.authenticator.main" alias="debug.security.firewall.authenticator.main"/>
     <service id="twig.configurator.environment" alias="ux.twig_component.twig.environment_configurator"/>
+    <service id=".zenstruck_foundry.factory_registry" alias=".zenstruck_foundry.in_memory.factory_registry"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id=".signing.messenger.default_serializer.inner" alias="messenger.transport.native_php_serializer"/>

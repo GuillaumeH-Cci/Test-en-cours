@@ -173,3 +173,11 @@ a33f9c,127.0.0.1,GET,http://localhost:8000/user,1775646586,a9983f,403,request
 a9983f,127.0.0.1,GET,http://localhost:8000/user,1775646586,,403,request
 16c88f,127.0.0.1,GET,http://localhost:8000/user,1775646647,48c6c7,403,request
 48c6c7,127.0.0.1,GET,http://localhost:8000/user,1775646647,,403,request
+cd83ec,127.0.0.1,GET,http://localhost:8000/user,1775647036,,302,request
+5df882,127.0.0.1,GET,http://localhost:8000/login,1775647036,,200,request
+4a347a,127.0.0.1,GET,http://localhost:8000/user,1775647040,,302,request
+43701a,127.0.0.1,GET,http://localhost:8000/login,1775647040,,200,request
+12341f,127.0.0.1,POST,http://localhost:8000/login,1775647048,,302,request
+5b39e9,127.0.0.1,GET,http://localhost:8000/user,1775647048,,200,request
+e2b604,127.0.0.1,GET,http://localhost:8000/user/1/roles,1775647052,,200,request
+dbff8d,127.0.0.1,GET,http://localhost:8000/user,1775647054,,200,request
