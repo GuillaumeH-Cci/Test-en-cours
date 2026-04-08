@@ -98,42 +98,47 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880 extends Template
 
         // line 6
         yield "
+    ";
+        // line 7
+        yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("BootstrapButton", ["class" => "d-inline-block", "text" => "Précédent", "type" => "info", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_index")]);
+        yield "
+
+    ";
+        // line 9
+        yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("BootstrapButton", ["class" => "d-inline-block", "text" => "Suivant", "type" => "info", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_index")]);
+        yield "
+
     <div class=\"row mt-2\">
     ";
-        // line 8
+        // line 12
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["pokemonList"]) || array_key_exists("pokemonList", $context) ? $context["pokemonList"] : (function () { throw new RuntimeError('Variable "pokemonList" does not exist.', 8, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["pokemonList"]) || array_key_exists("pokemonList", $context) ? $context["pokemonList"] : (function () { throw new RuntimeError('Variable "pokemonList" does not exist.', 12, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["pokemon"]) {
-            // line 9
+            // line 13
             yield "
         ";
-            // line 10
+            // line 14
             $_v0 = $this->env->getRuntime("Symfony\\UX\\TwigComponent\\Twig\\ComponentRuntime");
-            $preRendered = $_v0->preRender("BootstrapCard", Twig\Extension\CoreExtension::toArray(["class" => "col-3", "title" => CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "name", [], "any", false, false, false, 10), "img" => (("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" . CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "number", [], "any", false, false, false, 10)) . ".png"), "actions" => [["label" => "Détails", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_show", ["id" => CoreExtension::getAttribute($this->env, $this->source,             // line 11
-$context["pokemon"], "id", [], "any", false, false, false, 11)]), "type" => "info"], ["label" => "Modifier", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_update", ["id" => CoreExtension::getAttribute($this->env, $this->source,             // line 12
-$context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "warning"]]]));
+            $preRendered = $_v0->preRender("BootstrapCard", Twig\Extension\CoreExtension::toArray(["class" => "col-3", "title" => CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "name", [], "any", false, false, false, 14), "img" => (("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" . CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "number", [], "any", false, false, false, 14)) . ".png")]));
             if (null !== $preRendered) {
                 yield $preRendered; 
             } else {
-                $preRenderEvent = $_v0->startEmbedComponent("BootstrapCard", Twig\Extension\CoreExtension::toArray(["class" => "col-3", "title" => CoreExtension::getAttribute($this->env, $this->source,                 // line 10
-$context["pokemon"], "name", [], "any", false, false, false, 10), "img" => (("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" . CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "number", [], "any", false, false, false, 10)) . ".png"), "actions" => [["label" => "Détails", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_show", ["id" => CoreExtension::getAttribute($this->env, $this->source,                 // line 11
-$context["pokemon"], "id", [], "any", false, false, false, 11)]), "type" => "info"], ["label" => "Modifier", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_update", ["id" => CoreExtension::getAttribute($this->env, $this->source,                 // line 12
-$context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "warning"]]]), $context, "pokemon/index.html.twig", 20559594771);
+                $preRenderEvent = $_v0->startEmbedComponent("BootstrapCard", Twig\Extension\CoreExtension::toArray(["class" => "col-3", "title" => CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "name", [], "any", false, false, false, 14), "img" => (("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" . CoreExtension::getAttribute($this->env, $this->source, $context["pokemon"], "number", [], "any", false, false, false, 14)) . ".png")]), $context, "pokemon/index.html.twig", 21122723001);
                 $embeddedContext = $preRenderEvent->getVariables();
                 $embeddedContext["__parent__"] = $preRenderEvent->getTemplate();
                 $embeddedContext["outerBlocks"] ??= new \Symfony\UX\TwigComponent\BlockStack();
-                $embeddedBlocks = $embeddedContext["outerBlocks"]->convert($blocks, 20559594771);
-                $this->load("pokemon/index.html.twig", 10, "20559594771")->display($embeddedContext, $embeddedBlocks);
+                $embeddedBlocks = $embeddedContext["outerBlocks"]->convert($blocks, 21122723001);
+                $this->load("pokemon/index.html.twig", 14, "21122723001")->display($embeddedContext, $embeddedBlocks);
                 $_v0->finishEmbedComponent();
             }
-            // line 26
+            // line 38
             yield "
     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['pokemon'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 40
         yield "    </div>
 
 ";
@@ -167,7 +172,7 @@ $context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "war
      */
     public function getDebugInfo(): array
     {
-        return array (  137 => 28,  130 => 26,  121 => 12,  120 => 11,  119 => 10,  114 => 12,  113 => 11,  111 => 10,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  142 => 40,  135 => 38,  121 => 14,  118 => 13,  114 => 12,  108 => 9,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -178,13 +183,14 @@ $context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "war
 
 {% block body %}
 
+    {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Précédent', type: 'info', link: (path('app_pokemon_index')) }) }}
+
+    {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Suivant', type: 'info', link: (path('app_pokemon_index')) }) }}
+
     <div class=\"row mt-2\">
     {% for pokemon in pokemonList %}
 
-        {% component 'BootstrapCard' with { class: 'col-3', title: (pokemon.name), img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'~(pokemon.number)~'.png', actions: ([
-                { label: 'Détails', link: path('app_pokemon_show', { id: pokemon.id }), type: 'info' },
-                { label: 'Modifier', link: path('app_pokemon_update', { id: pokemon.id }), type: 'warning' }
-            ]) } %}
+        {% component 'BootstrapCard' with { class: 'col-3', title: (pokemon.name), img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'~(pokemon.number)~'.png' } %}
         
             {% block content %}<span class=\"badge text-bg-info rounded-pill\">#{{ pokemon.number|fill_number('0', 3) }}</span>
 
@@ -195,6 +201,17 @@ $context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "war
                 {{ type.name }}
             </span>
             {% endfor %}
+
+            <div class=\"mt-2\">
+
+                {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Détails', type: 'info', link: (path('app_pokemon_show', { id: pokemon.id })) }) }}
+
+                {# Si droit d'édition, on affiche le bouton #}
+                {% if is_granted('POKEMON_EDIT', pokemon) %}
+                {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Modifier', type: 'warning', link: (path('app_pokemon_update', { id: pokemon.id })) }) }}
+                {% endif %}
+                
+            </div>
 
         {% endblock %}{% endcomponent %}
 
@@ -208,7 +225,7 @@ $context["pokemon"], "id", [], "any", false, false, false, 12)]), "type" => "war
 
 
 /* pokemon/index.html.twig */
-class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Template
+class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___21122723001 extends Template
 {
     private Source $source;
     /**
@@ -230,8 +247,8 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
 
     protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
     {
-        // line 10
-        return $this->load((isset($context["__parent__"]) || array_key_exists("__parent__", $context) ? $context["__parent__"] : (function () { throw new RuntimeError('Variable "__parent__" does not exist.', 10, $this->source); })()), 10);
+        // line 14
+        return $this->load((isset($context["__parent__"]) || array_key_exists("__parent__", $context) ? $context["__parent__"] : (function () { throw new RuntimeError('Variable "__parent__" does not exist.', 14, $this->source); })()), 14);
     }
 
     protected function doDisplay(array $context, array $blocks = []): iterable
@@ -273,7 +290,7 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
         yield from [];
     }
 
-    // line 15
+    // line 16
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -287,26 +304,26 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         yield "<span class=\"badge text-bg-info rounded-pill\">#";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('App\Twig\Runtime\AppExtensionRuntime')->fillNumber(CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 15, $this->source); })()), "number", [], "any", false, false, false, 15), "0", 3), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('App\Twig\Runtime\AppExtensionRuntime')->fillNumber(CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 16, $this->source); })()), "number", [], "any", false, false, false, 16), "0", 3), "html", null, true);
         yield "</span>
 
             ";
-        // line 17
+        // line 18
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 17, $this->source); })()), "types", [], "any", false, false, false, 17));
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 18, $this->source); })()), "types", [], "any", false, false, false, 18));
         foreach ($context['_seq'] as $context["_key"] => $context["type"]) {
-            // line 18
+            // line 19
             yield "
             <span class=\"badge rounded-pill\"
                     style=\"background-color: ";
-            // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "color", [], "any", false, false, false, 20), "html", null, true);
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "color", [], "any", false, false, false, 21), "html", null, true);
             yield "; color: ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "textColor", [], "any", false, false, false, 20), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "textColor", [], "any", false, false, false, 21), "html", null, true);
             yield ";\">
                 ";
-            // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "name", [], "any", false, false, false, 21), "html", null, true);
+            // line 22
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["type"], "name", [], "any", false, false, false, 22), "html", null, true);
             yield "
             </span>
             ";
@@ -314,8 +331,29 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['type'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
+        // line 25
         yield "
+            <div class=\"mt-2\">
+
+                ";
+        // line 28
+        yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("BootstrapButton", ["class" => "d-inline-block", "text" => "Détails", "type" => "info", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 28, $this->source); })()), "id", [], "any", false, false, false, 28)])]);
+        yield "
+
+                ";
+        // line 31
+        yield "                ";
+        if ((($tmp = $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("POKEMON_EDIT", (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 31, $this->source); })()))) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 32
+            yield "                ";
+            yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("BootstrapButton", ["class" => "d-inline-block", "text" => "Modifier", "type" => "warning", "link" => $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_pokemon_update", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["pokemon"]) || array_key_exists("pokemon", $context) ? $context["pokemon"] : (function () { throw new RuntimeError('Variable "pokemon" does not exist.', 32, $this->source); })()), "id", [], "any", false, false, false, 32)])]);
+            yield "
+                ";
+        }
+        // line 34
+        yield "                
+            </div>
+
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -347,7 +385,7 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
      */
     public function getDebugInfo(): array
     {
-        return array (  318 => 24,  309 => 21,  303 => 20,  299 => 18,  295 => 17,  277 => 15,  234 => 10,  137 => 28,  130 => 26,  121 => 12,  120 => 11,  119 => 10,  114 => 12,  113 => 11,  111 => 10,  108 => 9,  104 => 8,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  354 => 34,  348 => 32,  345 => 31,  340 => 28,  335 => 25,  326 => 22,  320 => 21,  316 => 19,  312 => 18,  294 => 16,  251 => 14,  142 => 40,  135 => 38,  121 => 14,  118 => 13,  114 => 12,  108 => 9,  103 => 7,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -358,13 +396,14 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
 
 {% block body %}
 
+    {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Précédent', type: 'info', link: (path('app_pokemon_index')) }) }}
+
+    {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Suivant', type: 'info', link: (path('app_pokemon_index')) }) }}
+
     <div class=\"row mt-2\">
     {% for pokemon in pokemonList %}
 
-        {% component 'BootstrapCard' with { class: 'col-3', title: (pokemon.name), img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'~(pokemon.number)~'.png', actions: ([
-                { label: 'Détails', link: path('app_pokemon_show', { id: pokemon.id }), type: 'info' },
-                { label: 'Modifier', link: path('app_pokemon_update', { id: pokemon.id }), type: 'warning' }
-            ]) } %}
+        {% component 'BootstrapCard' with { class: 'col-3', title: (pokemon.name), img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'~(pokemon.number)~'.png' } %}
         
             {% block content %}<span class=\"badge text-bg-info rounded-pill\">#{{ pokemon.number|fill_number('0', 3) }}</span>
 
@@ -375,6 +414,17 @@ class __TwigTemplate_f496706aa77f15fc02d6b69c92f10880___20559594771 extends Temp
                 {{ type.name }}
             </span>
             {% endfor %}
+
+            <div class=\"mt-2\">
+
+                {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Détails', type: 'info', link: (path('app_pokemon_show', { id: pokemon.id })) }) }}
+
+                {# Si droit d'édition, on affiche le bouton #}
+                {% if is_granted('POKEMON_EDIT', pokemon) %}
+                {{ component('BootstrapButton', { class: 'd-inline-block', text: 'Modifier', type: 'warning', link: (path('app_pokemon_update', { id: pokemon.id })) }) }}
+                {% endif %}
+                
+            </div>
 
         {% endblock %}{% endcomponent %}
 

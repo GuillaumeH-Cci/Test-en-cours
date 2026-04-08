@@ -181,3 +181,7 @@ cd83ec,127.0.0.1,GET,http://localhost:8000/user,1775647036,,302,request
 5b39e9,127.0.0.1,GET,http://localhost:8000/user,1775647048,,200,request
 e2b604,127.0.0.1,GET,http://localhost:8000/user/1/roles,1775647052,,200,request
 dbff8d,127.0.0.1,GET,http://localhost:8000/user,1775647054,,200,request
+ceb773,127.0.0.1,GET,http://localhost:8000/user,1775655759,,200,request
+a8b157,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655761,,200,request
+f5638b,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655763,,200,request
+7a31e9,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655763,,200,request

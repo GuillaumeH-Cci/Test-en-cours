@@ -478,6 +478,16 @@
       <tag name="container.excluded" source="because it's a Doctrine entity"/>
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
     </service>
+    <service id="App\Factory\PokemonFactory" class="App\Factory\PokemonFactory" autowire="true" autoconfigure="true">
+      <tag name="foundry.factory"/>
+    </service>
+    <service id="App\Factory\PokemonTypeFactory" class="App\Factory\PokemonTypeFactory" autowire="true" autoconfigure="true">
+      <tag name="foundry.factory"/>
+    </service>
+    <service id="App\Factory\UserFactory" class="App\Factory\UserFactory" autowire="true" autoconfigure="true">
+      <tag name="foundry.factory"/>
+      <argument type="service" id="security.user_password_hasher"/>
+    </service>
     <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
@@ -8392,6 +8402,12 @@
     <service id=".abstract.instanceof.App\Entity\ResetPasswordRequest" class="App\Entity\ResetPasswordRequest" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\User.0.App\Entity\User" class="App\Entity\User" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\User" class="App\Entity\User" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Zenstruck\Foundry\Factory.0.App\Factory\PokemonFactory" class="App\Factory\PokemonFactory" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Factory\PokemonFactory" class="App\Factory\PokemonFactory" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Zenstruck\Foundry\Factory.0.App\Factory\PokemonTypeFactory" class="App\Factory\PokemonTypeFactory" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Factory\PokemonTypeFactory" class="App\Factory\PokemonTypeFactory" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Zenstruck\Foundry\Factory.0.App\Factory\UserFactory" class="App\Factory\UserFactory" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Factory\UserFactory" class="App\Factory\UserFactory" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PokemonCreateFormType" class="App\Form\PokemonCreateFormType" autowire="true" abstract="true"/>
