@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pokemon;
+use App\Entity\User;
 use App\Form\PokemonCreateFormType;
 use App\Repository\PokemonRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,9 +17,11 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class PokemonController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(PokemonRepository $pokemonRepository): Response
+    public function index(PokemonRepository $pokemonRepository, Request $request): Response
     {
-        $arrPokemon = $pokemonRepository->findAll();
+        $intPage = $request->query->get('page', 1);
+
+        $arrPokemon = $pokemonRepository->findPagination(4, $intPage);
 
         return $this->render('pokemon/index.html.twig', [
             'pokemonList' => $arrPokemon,
@@ -38,6 +41,11 @@ final class PokemonController extends AbstractController
 
         // Vérifie si le formulaire est soumiii et que les données sont valides
         if($createForm->isSubmitted() && $createForm->isValid()) {
+
+            /** @var User Utilisateur connecté actuellement à l'application */
+            $objCurrentUser = $this->getUser();
+
+            $objNewPokemon->setCreatedBy($objCurrentUser); //< Indique l'utilisateur créateur
 
             $entityManager->persist($objNewPokemon);
             $entityManager->flush();
