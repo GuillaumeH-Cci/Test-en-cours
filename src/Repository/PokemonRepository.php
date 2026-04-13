@@ -5,8 +5,8 @@ namespace App\Repository;
 use App\Entity\Pokemon;
 use App\Entity\PokemonType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @extends ServiceEntityRepository<Pokemon>
@@ -19,19 +19,23 @@ class PokemonRepository extends ServiceEntityRepository
     }
 
     public function findByTypes(PokemonType $type): array
-    {
-        $queryBuilder = $this->createQueryBuilder('p')->orderBy('p.number', 'ASC');
-
-        $queryBuilder->where('p.name = :name')
-            ->setParameter('name', 'Pikachu');
+    {        
+        // Création du QueryBuilder, SELECT * FROM pokemons as p...
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->orderBy('p.number', 'ASC');
 
         $queryBuilder
-            ->join('p.types', 't')
-            ->where('t.name = :type')
+            ->join('p.types', 't')          //< On a un association, créer la jointure
+            ->where('t = :type')            //< On utilise l'alias t dans le filtre
             ->setParameter('type', $type);
 
+        // Retourne les résultats
         return $queryBuilder->getQuery()->getResult();
     }
+
+
+
+
 
 
 

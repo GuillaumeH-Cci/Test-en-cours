@@ -197,3 +197,7 @@ e8bafa,127.0.0.1,GET,http://localhost:8000/pokemon/,1776066538,073ef3,500,reques
 d17827,127.0.0.1,GET,http://localhost:8000/pokemon/,1776068909,,500,request
 494ed7,127.0.0.1,GET,http://localhost:8000/pokemon/,1776069169,d8af5a,500,request
 d8af5a,127.0.0.1,GET,http://localhost:8000/pokemon/,1776069169,,500,request
+9ade79,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070037,368f0d,500,request
+368f0d,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070037,,500,request
+602be7,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070058,509795,500,request
+509795,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070058,,500,request
