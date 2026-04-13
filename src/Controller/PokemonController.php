@@ -32,7 +32,9 @@ final class PokemonController extends AbstractController
 
         $objPokemonPikachu = $pokemonRepository->findOneBy(['name' => 'Pikachu']);
 
-        dd($arrPokemonAll, $objPokemonId1, $objPokemonPikachu); // Débug
+        $objPokemonNbr53 = $pokemonRepository->findOneBy(['number' => '53']);
+
+        dd($arrPokemonAll, $objPokemonId1, $objPokemonPikachu, $objPokemonNbr53); // Débug
 
         return $this->render('pokemon/index.html.twig', [
             'pokemonList'   => $arrPokemon,

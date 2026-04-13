@@ -185,3 +185,7 @@ ceb773,127.0.0.1,GET,http://localhost:8000/user,1775655759,,200,request
 a8b157,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655761,,200,request
 f5638b,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655763,,200,request
 7a31e9,127.0.0.1,GET,http://localhost:8000/pokemon/,1775655763,,200,request
+a375c2,127.0.0.1,GET,http://localhost:8000/,1776064283,,200,request
+bd80a7,127.0.0.1,GET,http://localhost:8000/,1776064308,,200,request
+b75971,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,b89df3,404,request
+b89df3,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,,404,request
