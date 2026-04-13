@@ -17,3 +17,4 @@ f76700,127.0.0.1,GET,http://localhost:8000/pokemon/?page=2,1776082440,,200,reque
 03f0ad,127.0.0.1,GET,http://localhost:8000/pokemon/?page=2,1776082447,,200,request
 8e8928,127.0.0.1,GET,http://localhost:8000/pokemon/?page=1,1776082448,,200,request
 6b6d2b,127.0.0.1,GET,http://localhost:8000/pokemon/?page=1,1776082825,,200,request
+610c22,127.0.0.1,GET,http://localhost:8000/pokemon/?page=1,1776083550,,200,request
