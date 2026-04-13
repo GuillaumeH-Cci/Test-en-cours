@@ -227,3 +227,4 @@ e16043,127.0.0.1,GET,http://localhost:8000/pokemon/?page=3,1776080387,,200,reque
 a26671,127.0.0.1,GET,http://localhost:8000/pokemon/19,1776080414,,200,request
 1ccebe,127.0.0.1,GET,http://localhost:8000/pokemon/?page=14,1776080419,,200,request
 bdf481,127.0.0.1,GET,http://localhost:8000/pokemon/?page=15,1776080421,,200,request
+9a4c2d,127.0.0.1,GET,http://localhost:8000/pokemon/?page=1,1776081106,,200,request
