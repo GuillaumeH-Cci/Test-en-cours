@@ -189,3 +189,5 @@ a375c2,127.0.0.1,GET,http://localhost:8000/,1776064283,,200,request
 bd80a7,127.0.0.1,GET,http://localhost:8000/,1776064308,,200,request
 b75971,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,b89df3,404,request
 b89df3,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,,404,request
+7a6a40,127.0.0.1,GET,http://localhost:8000/pokemon/,1776064856,abb045,500,request
+abb045,127.0.0.1,GET,http://localhost:8000/pokemon/,1776064856,,500,request
