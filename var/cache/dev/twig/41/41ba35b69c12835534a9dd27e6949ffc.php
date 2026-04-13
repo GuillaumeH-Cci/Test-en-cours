@@ -96,6 +96,6 @@ class __TwigTemplate_b1931534b5069bb7b83020249a4d1fc4 extends Template
         return new Source("<div{{ attributes }}>
     <a href=\"{{ this.link }}\" class=\"btn btn-{{ this.type }}\">{{ this.text }}</a>
 </div>
-", "components/BootstrapButton.html.twig", "C:\\Users\\Guill\\Dossier Boulot\\Test-en-cours\\templates\\components\\BootstrapButton.html.twig");
+", "components/BootstrapButton.html.twig", "C:\\Users\\guillaume.hess\\Documents\\Symfony\\pokedwwm_webapp\\templates\\components\\BootstrapButton.html.twig");
     }
 }

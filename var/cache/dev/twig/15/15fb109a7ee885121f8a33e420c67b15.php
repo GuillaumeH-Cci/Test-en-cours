@@ -109,6 +109,6 @@ class __TwigTemplate_bf2e5208bf1c039c0326c83c7b714771 extends Template
 <p>
     Cheers!
 </p>
-", "registration/confirmation_email.html.twig", "C:\\Users\\Guill\\Dossier Boulot\\Test-en-cours\\templates\\registration\\confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "C:\\Users\\guillaume.hess\\Documents\\Symfony\\pokedwwm_webapp\\templates\\registration\\confirmation_email.html.twig");
     }
 }

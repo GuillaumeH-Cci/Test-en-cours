@@ -81,6 +81,6 @@ class __TwigTemplate_eb43036da57fb2fc581b093b9e829174 extends Template
     <div class=\"container text-center\">
         <p class=\"mb-1 fw-semibold\">DWWM - 2026</p>
     </div>
-</footer>", "_partials/footer.html.twig", "C:\\Users\\Guill\\Dossier Boulot\\Test-en-cours\\templates\\_partials\\footer.html.twig");
+</footer>", "_partials/footer.html.twig", "C:\\Users\\guillaume.hess\\Documents\\Symfony\\pokedwwm_webapp\\templates\\_partials\\footer.html.twig");
     }
 }

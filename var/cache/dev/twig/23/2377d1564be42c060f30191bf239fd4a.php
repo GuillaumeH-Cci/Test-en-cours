@@ -148,6 +148,6 @@ class __TwigTemplate_7a71bf33afbd4eb84bc489f87eb78116 extends Template
 {{ dump(app.current_route) }}
 
 {% endblock %}
-", "dashboard/index.html.twig", "C:\\Users\\Guill\\Dossier Boulot\\Test-en-cours\\templates\\dashboard\\index.html.twig");
+", "dashboard/index.html.twig", "C:\\Users\\guillaume.hess\\Documents\\Symfony\\pokedwwm_webapp\\templates\\dashboard\\index.html.twig");
     }
 }

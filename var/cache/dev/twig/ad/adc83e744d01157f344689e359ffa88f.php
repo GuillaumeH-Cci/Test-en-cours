@@ -102,6 +102,6 @@ unset($context[$key]);
         return new Source("{% props target -%}
 
 <turbo-stream action=\"remove\" targets=\"{{ target }}\" {{- attributes }}></turbo-stream>
-", "@Turbo/components/Stream/Remove.html.twig", "C:\\Users\\Guill\\Dossier Boulot\\Test-en-cours\\vendor\\symfony\\ux-turbo\\templates\\components\\Stream\\Remove.html.twig");
+", "@Turbo/components/Stream/Remove.html.twig", "C:\\Users\\guillaume.hess\\Documents\\Symfony\\pokedwwm_webapp\\vendor\\symfony\\ux-turbo\\templates\\components\\Stream\\Remove.html.twig");
     }
 }
