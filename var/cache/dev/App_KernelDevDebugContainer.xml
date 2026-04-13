@@ -194,7 +194,7 @@
     <parameter key="kernel.allowed_http_method_override">null</parameter>
     <parameter key="kernel.trust_x_sendfile_type_header">%env(bool:default::SYMFONY_TRUST_X_SENDFILE_TYPE_HEADER)%</parameter>
     <parameter key="kernel.trusted_hosts">%env(default::SYMFONY_TRUSTED_HOSTS)%</parameter>
-    <parameter key="kernel.default_locale">ru</parameter>
+    <parameter key="kernel.default_locale">fr</parameter>
     <parameter key="kernel.enabled_locales" type="collection"/>
     <parameter key="kernel.error_controller">error_controller</parameter>
     <parameter key="kernel.trusted_proxies">%env(default::SYMFONY_TRUSTED_PROXIES)%</parameter>
@@ -594,7 +594,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" priority="-50">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.LNhQfLc"/>
+      <argument type="service" id=".service_locator.nZ6f9R_"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" priority="-100">controller.argument_value_resolver</tag>
@@ -617,7 +617,7 @@
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="request_stack"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
       <argument>false</argument>
       <argument type="collection"/>
@@ -933,7 +933,7 @@
     </service>
     <service id="slugger" class="Symfony\Component\String\Slugger\AsciiSlugger">
       <tag name="kernel.locale_aware"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
     </service>
     <service id="container.getenv" class="Closure">
       <tag name="routing.expression_language_function" function="env"/>
@@ -1503,7 +1503,7 @@
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <argument>C:\Users\guillaume.hess\Documents\Symfony\pokedwwm_webapp/translations</argument>
       <argument>C:\Users\guillaume.hess\Documents\Symfony\pokedwwm_webapp/templates</argument>
       <argument type="collection">
@@ -1543,7 +1543,7 @@
       <argument type="service" id="translation.provider_collection"/>
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setName">
@@ -2356,7 +2356,7 @@
       <tag name="kernel.locale_aware"/>
       <argument type="service" id=".service_locator.6KVxCv0"/>
       <argument type="service" id="translator.formatter.default"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <argument type="collection">
         <argument key="translation.loader.php" type="collection">
           <argument>php</argument>
@@ -2827,7 +2827,7 @@
       </call>
       <call method="setFallbackLocales">
         <argument type="collection">
-          <argument>ru</argument>
+          <argument>fr</argument>
         </argument>
       </call>
     </service>
@@ -3123,7 +3123,7 @@
     <service id="translation.locale_switcher" class="Symfony\Component\Translation\LocaleSwitcher">
       <tag name="kernel.reset" method="reset"/>
       <tag name="kernel.locale_aware"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <argument type="tagged_iterator" tag="kernel.locale_aware" exclude="translation.locale_switcher"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
     </service>
@@ -3876,7 +3876,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.LNhQfLc"/>
+      <argument type="service" id=".service_locator.nZ6f9R_"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3999,7 +3999,7 @@
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="parameter_bag" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.router" on-invalid="ignore"/>
-      <argument>ru</argument>
+      <argument>fr</argument>
       <call method="setConfigCacheFactory">
         <argument type="service" id="config_cache_factory"/>
       </call>
@@ -4016,7 +4016,7 @@
       <call method="setParameters">
         <argument type="collection">
           <argument key="_functions" type="service" id="router.expression_language_provider" on-invalid="ignore"/>
-          <argument key="_locale">ru</argument>
+          <argument key="_locale">fr</argument>
         </argument>
       </call>
     </service>
@@ -9246,6 +9246,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1rKo8fK" method="withContext"/>
     </service>
+    <service id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PokemonController::delete()"/>
+      <argument>App\Controller\PokemonController::delete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.1rKo8fK" method="withContext"/>
+    </service>
     <service id=".service_locator.08FVjDw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9361,7 +9367,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.8m8R3s_" method="withContext"/>
     </service>
-    <service id=".service_locator.LNhQfLc" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.nZ6f9R_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
@@ -9374,6 +9380,7 @@
         <argument key="App\Controller\PokemonController::create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController::show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController::update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
+        <argument key="App\Controller\PokemonController::delete" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()"/>
         <argument key="App\Controller\PokemonTypeController::index" type="service_closure" id=".service_locator.08FVjDw.App\Controller\PokemonTypeController::index()"/>
         <argument key="App\Controller\PokemonTypeController::handleCreate" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonTypeController::handleCreate()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.3FWkHlB.App\Controller\RegistrationController::register()"/>
@@ -9392,6 +9399,7 @@
         <argument key="App\Controller\PokemonController:create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController:show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController:update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
+        <argument key="App\Controller\PokemonController:delete" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()"/>
         <argument key="App\Controller\PokemonTypeController:index" type="service_closure" id=".service_locator.08FVjDw.App\Controller\PokemonTypeController::index()"/>
         <argument key="App\Controller\PokemonTypeController:handleCreate" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonTypeController::handleCreate()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.3FWkHlB.App\Controller\RegistrationController::register()"/>
@@ -11842,7 +11850,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.ryAvHi4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.LNhQfLc"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.nZ6f9R_"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.W55Po6X"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".Psr\Log\LoggerInterface $request.logger" alias="monolog.logger.request"/>

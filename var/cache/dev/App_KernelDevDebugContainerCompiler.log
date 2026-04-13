@@ -1157,7 +1157,6 @@ Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inl
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.heJ666n" to ".service_locator.heJ666n.App\Controller\HelloWorldController::sendMail()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.qZAPP4G" to ".service_locator.qZAPP4G.App\Controller\PokemonController::index()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.6u3CLkp" to ".service_locator.6u3CLkp.App\Controller\PokemonController::show()".
-Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.1rKo8fK" to ".service_locator.1rKo8fK.App\Controller\PokemonController::update()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.08FVjDw" to ".service_locator.08FVjDw.App\Controller\PokemonTypeController::index()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.UDxVJk_" to ".service_locator.UDxVJk_.App\Controller\RegistrationController::verifyUserEmail()".
 Symfony\Component\DependencyInjection\Compiler\InlineServiceDefinitionsPass: Inlined service ".service_locator.db.LmRj" to ".service_locator.db.LmRj.App\Controller\ResetPasswordController::request()".

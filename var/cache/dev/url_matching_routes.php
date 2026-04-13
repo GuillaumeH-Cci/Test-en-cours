@@ -54,11 +54,12 @@ return [
                 .'|/pokemon/(?'
                     .'|(\\d+)(*:219)'
                     .'|(\\d+)/update(*:239)'
+                    .'|(\\d+)/delete(*:259)'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:284)'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:304)'
                 .'|/user/(?'
-                    .'|(\\d+)(*:306)'
-                    .'|(\\d+)/roles(*:325)'
+                    .'|(\\d+)(*:326)'
+                    .'|(\\d+)/roles(*:345)'
                 .')'
             .')/?$}sDu',
     ],
@@ -73,9 +74,10 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         219 => [[['_route' => 'app_pokemon_show', '_controller' => 'App\\Controller\\PokemonController::show'], ['id'], null, null, false, true, null]],
         239 => [[['_route' => 'app_pokemon_update', '_controller' => 'App\\Controller\\PokemonController::update'], ['id'], null, null, false, false, null]],
-        284 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        306 => [[['_route' => 'app_user_update', '_controller' => 'App\\Controller\\UserController::update'], ['id'], null, null, false, true, null]],
-        325 => [
+        259 => [[['_route' => 'app_pokemon_delete', '_controller' => 'App\\Controller\\PokemonController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
+        304 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        326 => [[['_route' => 'app_user_update', '_controller' => 'App\\Controller\\UserController::update'], ['id'], null, null, false, true, null]],
+        345 => [
             [['_route' => 'app_user_roles', '_controller' => 'App\\Controller\\UserController::updateRoles'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
