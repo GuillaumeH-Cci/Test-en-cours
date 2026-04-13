@@ -42,3 +42,8 @@ aff608,127.0.0.1,GET,http://localhost:8000/login,1776084428,,200,request
 71e265,127.0.0.1,GET,http://localhost:8000/,1776087396,,200,request
 ca1bca,127.0.0.1,GET,http://localhost:8000/pokemon/,1776087399,,200,request
 816372,127.0.0.1,GET,http://localhost:8000/pokemon/,1776087401,,200,request
+09fdbb,127.0.0.1,GET,http://localhost:8000/pokemon/,1776087809,,200,request
+5c0a60,127.0.0.1,GET,http://localhost:8000/_error/404,1776088251,6a11b8,404,request
+6a11b8,127.0.0.1,GET,http://localhost:8000/_error/404,1776088251,,404,request
+afcc6b,127.0.0.1,GET,http://localhost:8000/,1776088256,,200,request
+ee1a3b,127.0.0.1,GET,http://localhost:8000/pokemon/,1776088259,,200,request
