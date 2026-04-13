@@ -191,3 +191,9 @@ b75971,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,b89df3,404,req
 b89df3,127.0.0.1,GET,http://localhost:8000/favicon.ico,1776064478,,404,request
 7a6a40,127.0.0.1,GET,http://localhost:8000/pokemon/,1776064856,abb045,500,request
 abb045,127.0.0.1,GET,http://localhost:8000/pokemon/,1776064856,,500,request
+e8bafa,127.0.0.1,GET,http://localhost:8000/pokemon/,1776066538,073ef3,500,request
+073ef3,127.0.0.1,GET,http://localhost:8000/pokemon/,1776066538,,500,request
+674023,127.0.0.1,GET,http://localhost:8000/pokemon/,1776068908,d17827,500,request
+d17827,127.0.0.1,GET,http://localhost:8000/pokemon/,1776068909,,500,request
+494ed7,127.0.0.1,GET,http://localhost:8000/pokemon/,1776069169,d8af5a,500,request
+d8af5a,127.0.0.1,GET,http://localhost:8000/pokemon/,1776069169,,500,request

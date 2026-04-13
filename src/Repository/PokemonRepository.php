@@ -3,9 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Pokemon;
+use App\Entity\PokemonType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Pokemon>
@@ -16,6 +17,23 @@ class PokemonRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Pokemon::class);
     }
+
+    public function findByTypes(PokemonType $type): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p')->orderBy('p.number', 'ASC');
+
+        $queryBuilder->where('p.name = :name')
+            ->setParameter('name', 'Pikachu');
+
+        $queryBuilder
+            ->join('p.types', 't')
+            ->where('t.name = :type')
+            ->setParameter('type', $type);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
 
     public function findPagination(int $number, int $page = 1): array
     {

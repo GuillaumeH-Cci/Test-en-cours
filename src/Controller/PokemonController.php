@@ -53,7 +53,7 @@ final class PokemonController extends AbstractController
         
         */
 
-        $objPokemonsFeu = $pokemonRepository-> ??? //< Récupérer tous les pokémons de type feu
+        $objPokemonsFeu = $pokemonRepository->findByType('Feu'); //< Récupérer tous les pokémons de type feu
 
         dd($objPkmTypeFeu->getPokemons(), $objPokemonsFeu); //< Le tableau parait vide, car Symfony optimise les requêtes - LAZY ou EAGER
 
