@@ -22,7 +22,8 @@ final class PokemonController extends AbstractController
     public function index(PokemonRepository $pokemonRepository, PaginatorInterface $paginator, Request $request): Response
     {
         // On utilise le repository pour construire la requête qui sera envoyée au paginator
-        $query = $pokemonRepository->createQueryBuilder('p');
+        $query = $pokemonRepository->createQueryBuilder('p')
+            ->orderBy('p.number', 'ASC');
 
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
@@ -58,7 +59,7 @@ final class PokemonController extends AbstractController
         $createForm->handleRequest($request);
 
         // Vérifie si le formulaire est soumiii et que les données sont valides
-        if($createForm->isSubmitted() && $createForm->isValid()) {
+        if ($createForm->isSubmitted() && $createForm->isValid()) {
 
             /** @var User Utilisateur connecté actuellement à l'application */
             $objCurrentUser = $this->getUser();
@@ -76,7 +77,7 @@ final class PokemonController extends AbstractController
                 'id' => $objNewPokemon->getId()
             ]);
         }
-        
+
         return $this->render('pokemon/form.html.twig', [
             'createForm'    => $createForm
         ]);
@@ -104,7 +105,7 @@ final class PokemonController extends AbstractController
 
         $updateForm->handleRequest($request);
 
-        if($updateForm->isSubmitted() && $updateForm->isValid()) {
+        if ($updateForm->isSubmitted() && $updateForm->isValid()) {
 
             // L'entité provenant déjà de la base, Doctrine la connait
             // => pas besoin de persist
