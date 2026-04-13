@@ -20,46 +20,9 @@ final class PokemonController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(PokemonRepository $pokemonRepository, PokemonTypeRepository $pokemonTypeRepository, Request $request): Response
     {
-        // $intPage = $request->query->get('page', 1);
+        $intPage = $request->query->get('page', 1);
 
-        // $arrPokemon = $pokemonRepository->findPagination(4, $intPage);
-
-        // dd($arrPokemon);
-
-        /* 
-
-        $arrPokemonsAll     = $pokemonRepository->findAll();                         //< SELECT * from pokemons;
-
-        $objPokemonId1      = $pokemonRepository->find(1);                           //< SELECT * from pokemons WHERE pkm_id = 1;
-
-        $objPokemonPikachu  = $pokemonRepository->findOneBy(['name' => 'Pikachu']);  //< SELECT * from pokemons WHERE name = 'Pikachu';
-
-        $objPokemonTorterra = $pokemonRepository->findOneBy(['name' => 'Torterra']); //< Retourne null si aucun résultat n'est trouvé
-
-        $objPokemonNb53     = $pokemonRepository->findOneBy(['number' => 53]);       //< SELECT * from pokemons where pkm_number = 53
-
-        $objPkmNbrMystherbe  = $pokemonRepository->findOneByName('Mystherbe');
-        $objPkmNameMystherbe = $pokemonRepository->findOneByNumber(43);
-
-        */
-
-        $objPkmTypeFeu      = $pokemonTypeRepository->findOneByName('Feu'); //< Type Feu dans la tables des types
-
-        /*
-
-        dd($arrPokemonsAll, $objPokemonId1, $objPokemonPikachu, 
-            $objPokemonTorterra, $objPokemonNb53, 
-            $objPkmNbrMystherbe, $objPkmNameMystherbe); //< var_dump(..); die;
-        
-        */
-
-        $objPokemonsFeu = $pokemonRepository->findByType('Feu'); //< Récupérer tous les pokémons de type feu
-
-        $arrPokemonsFilter = $pokemonRepository->findByTypes(['Eau', 'Feu']);
-
-        // dd($objPkmTypeFeu->getPokemons(), $objPokemonsFeu); //< Le tableau parait vide, car Symfony optimise les requêtes - LAZY ou EAGER
-
-        dd($arrPokemonsFilter);
+        $arrPokemon = $pokemonRepository->findPagination(4, $intPage);
 
         return $this->render('pokemon/index.html.twig', [
             'pokemonList'   => $arrPokemon,
