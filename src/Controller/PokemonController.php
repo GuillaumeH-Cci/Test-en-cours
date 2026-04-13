@@ -19,11 +19,20 @@ final class PokemonController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(PokemonRepository $pokemonRepository, Request $request): Response
     {
-        $intPage = $request->query->get('page', 1);
+        //$intPage = $request->query->get('page', 1);
 
-        $arrPokemon = $pokemonRepository->findPagination(4, $intPage);
+        //$arrPokemon = $pokemonRepository->findPagination(4, $intPage);
 
-        dd($arrPokemon);
+        //dd($arrPokemon);
+
+
+        $arrPokemonAll = $pokemonRepository->findAll();
+        
+        $objPokemonId1 = $pokemonRepository->find(1);
+
+        $objPokemonPikachu = $pokemonRepository->findOneBy(['name' => 'Pikachu']);
+
+        dd($arrPokemonAll, $objPokemonId1, $objPokemonPikachu); // Débug
 
         return $this->render('pokemon/index.html.twig', [
             'pokemonList'   => $arrPokemon,
