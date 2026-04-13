@@ -194,7 +194,7 @@
     <parameter key="kernel.allowed_http_method_override">null</parameter>
     <parameter key="kernel.trust_x_sendfile_type_header">%env(bool:default::SYMFONY_TRUST_X_SENDFILE_TYPE_HEADER)%</parameter>
     <parameter key="kernel.trusted_hosts">%env(default::SYMFONY_TRUSTED_HOSTS)%</parameter>
-    <parameter key="kernel.default_locale">en</parameter>
+    <parameter key="kernel.default_locale">ru</parameter>
     <parameter key="kernel.enabled_locales" type="collection"/>
     <parameter key="kernel.error_controller">error_controller</parameter>
     <parameter key="kernel.trusted_proxies">%env(default::SYMFONY_TRUSTED_PROXIES)%</parameter>
@@ -617,7 +617,7 @@
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="request_stack"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
       <argument>false</argument>
       <argument type="collection"/>
@@ -933,7 +933,7 @@
     </service>
     <service id="slugger" class="Symfony\Component\String\Slugger\AsciiSlugger">
       <tag name="kernel.locale_aware"/>
-      <argument>en</argument>
+      <argument>ru</argument>
     </service>
     <service id="container.getenv" class="Closure">
       <tag name="routing.expression_language_function" function="env"/>
@@ -1503,7 +1503,7 @@
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <argument>C:\Users\guillaume.hess\Documents\Symfony\pokedwwm_webapp/translations</argument>
       <argument>C:\Users\guillaume.hess\Documents\Symfony\pokedwwm_webapp/templates</argument>
       <argument type="collection">
@@ -1543,7 +1543,7 @@
       <argument type="service" id="translation.provider_collection"/>
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setName">
@@ -2356,7 +2356,7 @@
       <tag name="kernel.locale_aware"/>
       <argument type="service" id=".service_locator.6KVxCv0"/>
       <argument type="service" id="translator.formatter.default"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <argument type="collection">
         <argument key="translation.loader.php" type="collection">
           <argument>php</argument>
@@ -2827,7 +2827,7 @@
       </call>
       <call method="setFallbackLocales">
         <argument type="collection">
-          <argument>en</argument>
+          <argument>ru</argument>
         </argument>
       </call>
     </service>
@@ -3123,7 +3123,7 @@
     <service id="translation.locale_switcher" class="Symfony\Component\Translation\LocaleSwitcher">
       <tag name="kernel.reset" method="reset"/>
       <tag name="kernel.locale_aware"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <argument type="tagged_iterator" tag="kernel.locale_aware" exclude="translation.locale_switcher"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
     </service>
@@ -3999,7 +3999,7 @@
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="parameter_bag" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.router" on-invalid="ignore"/>
-      <argument>en</argument>
+      <argument>ru</argument>
       <call method="setConfigCacheFactory">
         <argument type="service" id="config_cache_factory"/>
       </call>
@@ -4016,7 +4016,7 @@
       <call method="setParameters">
         <argument type="collection">
           <argument key="_functions" type="service" id="router.expression_language_provider" on-invalid="ignore"/>
-          <argument key="_locale">en</argument>
+          <argument key="_locale">ru</argument>
         </argument>
       </call>
     </service>
