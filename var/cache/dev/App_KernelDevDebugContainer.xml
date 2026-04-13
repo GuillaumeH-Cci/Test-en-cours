@@ -594,7 +594,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" priority="-50">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.O6vMu9N"/>
+      <argument type="service" id=".service_locator.LNhQfLc"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" priority="-100">controller.argument_value_resolver</tag>
@@ -3876,7 +3876,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.O6vMu9N"/>
+      <argument type="service" id=".service_locator.LNhQfLc"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -9196,18 +9196,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.heJ666n" method="withContext"/>
     </service>
-    <service id=".service_locator.uGowHOq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.qZAPP4G" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="pokemonRepository" type="service_closure" id="App\Repository\PokemonRepository"/>
-        <argument key="pokemonTypeRepository" type="service_closure" id="App\Repository\PokemonTypeRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.uGowHOq.App\Controller\PokemonController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.qZAPP4G.App\Controller\PokemonController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PokemonController::index()"/>
       <argument>App\Controller\PokemonController::index()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.uGowHOq" method="withContext"/>
+      <factory service=".service_locator.qZAPP4G" method="withContext"/>
     </service>
     <service id=".service_locator.3BoFVFw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9361,7 +9361,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.8m8R3s_" method="withContext"/>
     </service>
-    <service id=".service_locator.O6vMu9N" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.LNhQfLc" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
@@ -9370,7 +9370,7 @@
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Controller\AuthController::login" type="service_closure" id=".service_locator.0MQaTBY.App\Controller\AuthController::login()"/>
         <argument key="App\Controller\HelloWorldController::sendMail" type="service_closure" id=".service_locator.heJ666n.App\Controller\HelloWorldController::sendMail()"/>
-        <argument key="App\Controller\PokemonController::index" type="service_closure" id=".service_locator.uGowHOq.App\Controller\PokemonController::index()"/>
+        <argument key="App\Controller\PokemonController::index" type="service_closure" id=".service_locator.qZAPP4G.App\Controller\PokemonController::index()"/>
         <argument key="App\Controller\PokemonController::create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController::show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController::update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
@@ -9388,7 +9388,7 @@
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Controller\AuthController:login" type="service_closure" id=".service_locator.0MQaTBY.App\Controller\AuthController::login()"/>
         <argument key="App\Controller\HelloWorldController:sendMail" type="service_closure" id=".service_locator.heJ666n.App\Controller\HelloWorldController::sendMail()"/>
-        <argument key="App\Controller\PokemonController:index" type="service_closure" id=".service_locator.uGowHOq.App\Controller\PokemonController::index()"/>
+        <argument key="App\Controller\PokemonController:index" type="service_closure" id=".service_locator.qZAPP4G.App\Controller\PokemonController::index()"/>
         <argument key="App\Controller\PokemonController:create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController:show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController:update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
@@ -11842,7 +11842,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.ryAvHi4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.O6vMu9N"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.LNhQfLc"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.W55Po6X"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".Psr\Log\LoggerInterface $request.logger" alias="monolog.logger.request"/>
@@ -11904,7 +11904,7 @@
     <service id=".service_locator.c0wzfI4" alias=".service_locator.1vYpZ1B"/>
     <service id=".service_locator.uBwBrvQ" alias=".service_locator.0MQaTBY"/>
     <service id=".service_locator..XwZqG2" alias=".service_locator.heJ666n"/>
-    <service id=".service_locator.80COtYm" alias=".service_locator.uGowHOq"/>
+    <service id=".service_locator.h1b9.Z8" alias=".service_locator.qZAPP4G"/>
     <service id=".service_locator.UOV1jy9" alias=".service_locator.3BoFVFw"/>
     <service id=".service_locator.qKrOWZF" alias=".service_locator.6u3CLkp"/>
     <service id=".service_locator.UqTWx4U" alias=".service_locator.1rKo8fK"/>

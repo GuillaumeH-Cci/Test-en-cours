@@ -201,3 +201,4 @@ d8af5a,127.0.0.1,GET,http://localhost:8000/pokemon/,1776069169,,500,request
 368f0d,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070037,,500,request
 602be7,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070058,509795,500,request
 509795,127.0.0.1,GET,http://localhost:8000/pokemon/,1776070058,,500,request
+d5377d,127.0.0.1,GET,http://localhost:8000/pokemon/,1776079740,,200,request

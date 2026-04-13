@@ -8,6 +8,7 @@ use App\Form\PokemonCreateFormType;
 use App\Repository\PokemonRepository;
 use App\Repository\PokemonTypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,16 +19,31 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class PokemonController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(PokemonRepository $pokemonRepository, PokemonTypeRepository $pokemonTypeRepository, Request $request): Response
+    public function index(PokemonRepository $pokemonRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // On utilise le repository pour construire la requête qui sera envoyée au paginator
+        $query = $pokemonRepository->createQueryBuilder('p');
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /* page number */
+            10/* limit per page */
+        );
+
+        return $this->render('pokemon/index.html.twig', ['pagination' => $pagination]);
+
+        /*
         $intPage = $request->query->get('page', 1);
 
         $arrPokemon = $pokemonRepository->findPagination(4, $intPage);
+
+        dd($arrPokemon);
 
         return $this->render('pokemon/index.html.twig', [
             'pokemonList'   => $arrPokemon,
             'currentPage'   => $intPage,
         ]);
+        */
     }
 
     #[Route('/create', name: 'create')]
