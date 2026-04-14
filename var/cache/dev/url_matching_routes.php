@@ -53,15 +53,27 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/pokemon/(?'
-                    .'|(\\d+)(*:219)'
-                    .'|(\\d+)/update(*:239)'
-                    .'|(\\d+)/delete(*:259)'
+                .'|/media/cache/resolve/(?'
+                    .'|([A-z0-9_-]*)/rc/([^/]++)/(.+)(*:256)'
+                    .'|([A-z0-9_-]*)/(.+)(*:282)'
                 .')'
-                .'|/reset\\-password/reset(?:/([^/]++))?(*:304)'
+                .'|/autocomplete/([^/]++)(*:313)'
+                .'|/p(?'
+                    .'|icture/(?'
+                        .'|create/pokemon/(\\d+)(*:356)'
+                        .'|(\\d+)/update(*:376)'
+                        .'|(\\d+)/delete(*:396)'
+                    .')'
+                    .'|okemon/(?'
+                        .'|(\\d+)(*:420)'
+                        .'|(\\d+)/update(*:440)'
+                        .'|(\\d+)/delete(*:460)'
+                    .')'
+                .')'
+                .'|/reset\\-password/reset(?:/([^/]++))?(*:506)'
                 .'|/user/(?'
-                    .'|(\\d+)(*:326)'
-                    .'|(\\d+)/roles(*:345)'
+                    .'|(\\d+)(*:528)'
+                    .'|(\\d+)/roles(*:547)'
                 .')'
             .')/?$}sDu',
     ],
@@ -74,12 +86,18 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        219 => [[['_route' => 'app_pokemon_show', '_controller' => 'App\\Controller\\PokemonController::show'], ['id'], null, null, false, true, null]],
-        239 => [[['_route' => 'app_pokemon_update', '_controller' => 'App\\Controller\\PokemonController::update'], ['id'], null, null, false, false, null]],
-        259 => [[['_route' => 'app_pokemon_delete', '_controller' => 'App\\Controller\\PokemonController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
-        304 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        326 => [[['_route' => 'app_user_update', '_controller' => 'App\\Controller\\UserController::update'], ['id'], null, null, false, true, null]],
-        345 => [
+        256 => [[['_route' => 'liip_imagine_filter_runtime', '_controller' => 'Liip\\ImagineBundle\\Controller\\ImagineController::filterRuntimeAction'], ['filter', 'hash', 'path'], ['GET' => 0], null, false, true, null]],
+        282 => [[['_route' => 'liip_imagine_filter', '_controller' => 'Liip\\ImagineBundle\\Controller\\ImagineController::filterAction'], ['filter', 'path'], ['GET' => 0], null, false, true, null]],
+        313 => [[['_route' => 'ux_entity_autocomplete', '_controller' => 'ux.autocomplete.entity_autocomplete_controller'], ['alias'], null, null, false, true, null]],
+        356 => [[['_route' => 'app_picture_create_pokemon', '_controller' => 'App\\Controller\\PictureController::createForPokemon'], ['id'], null, null, false, true, null]],
+        376 => [[['_route' => 'app_picture_update', '_controller' => 'App\\Controller\\PictureController::update'], ['id'], null, null, false, false, null]],
+        396 => [[['_route' => 'app_picture_delete', '_controller' => 'App\\Controller\\PictureController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
+        420 => [[['_route' => 'app_pokemon_show', '_controller' => 'App\\Controller\\PokemonController::show'], ['id'], null, null, false, true, null]],
+        440 => [[['_route' => 'app_pokemon_update', '_controller' => 'App\\Controller\\PokemonController::update'], ['id'], null, null, false, false, null]],
+        460 => [[['_route' => 'app_pokemon_delete', '_controller' => 'App\\Controller\\PokemonController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
+        506 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        528 => [[['_route' => 'app_user_update', '_controller' => 'App\\Controller\\UserController::update'], ['id'], null, null, false, true, null]],
+        547 => [
             [['_route' => 'app_user_roles', '_controller' => 'App\\Controller\\UserController::updateRoles'], ['id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

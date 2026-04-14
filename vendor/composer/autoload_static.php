@@ -18,8 +18,8 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
         'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
         'c7baa00073ee9c61edf148c51917cfb4' => __DIR__ . '/..' . '/twig/twig/src/Resources/escaper.php',
         'f844ccf1d25df8663951193c3fc307c8' => __DIR__ . '/..' . '/twig/twig/src/Resources/string_loader.php',
-        '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -55,6 +55,7 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
             'Symfony\\UX\\TwigComponent\\' => 25,
             'Symfony\\UX\\Turbo\\' => 17,
             'Symfony\\UX\\StimulusBundle\\' => 26,
+            'Symfony\\UX\\Autocomplete\\' => 24,
             'Symfony\\Runtime\\Symfony\\Component\\' => 34,
             'Symfony\\Polyfill\\Php85\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -142,10 +143,18 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
         array (
             'Monolog\\' => 8,
         ),
+        'L' =>
+        array (
+            'Liip\\ImagineBundle\\' => 19,
+        ),
         'K' =>
         array (
             'Knp\\Component\\' => 14,
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
+        'I' =>
+        array (
+            'Imagine\\' => 8,
         ),
         'F' =>
         array (
@@ -229,6 +238,10 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
         'Symfony\\UX\\StimulusBundle\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/stimulus-bundle/src',
+        ),
+        'Symfony\\UX\\Autocomplete\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/ux-autocomplete/src',
         ),
         'Symfony\\Runtime\\Symfony\\Component\\' =>
         array (
@@ -550,6 +563,10 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Liip\\ImagineBundle\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/liip/imagine-bundle',
+        ),
         'Knp\\Component\\' =>
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-components/src/Knp/Component',
@@ -557,6 +574,10 @@ class ComposerStaticInitf5cb7b67addb1eff52e8798f54513b08
         'Knp\\Bundle\\PaginatorBundle\\' =>
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle/src',
+        ),
+        'Imagine\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/imagine/imagine/src',
         ),
         'Faker\\' =>
         array (
