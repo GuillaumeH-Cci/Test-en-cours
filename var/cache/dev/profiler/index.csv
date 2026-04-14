@@ -48,3 +48,8 @@ ca1bca,127.0.0.1,GET,http://localhost:8000/pokemon/,1776087399,,200,request
 afcc6b,127.0.0.1,GET,http://localhost:8000/,1776088256,,200,request
 ee1a3b,127.0.0.1,GET,http://localhost:8000/pokemon/,1776088259,,200,request
 71b2e7,127.0.0.1,GET,http://localhost:8000/pokemon/,1776088770,,200,request
+688811,127.0.0.1,GET,http://localhost:8000/,1776158552,,200,request
+9a5308,127.0.0.1,GET,http://localhost:8000/create,1776158560,d82d33,404,request
+d82d33,127.0.0.1,GET,http://localhost:8000/create,1776158560,,404,request
+915372,127.0.0.1,GET,http://localhost:8000/pokemon/create,1776158568,,302,request
+da96ba,127.0.0.1,GET,http://localhost:8000/login,1776158568,,200,request

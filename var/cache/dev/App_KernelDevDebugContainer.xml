@@ -266,7 +266,12 @@
     <parameter key="twig.default_path">C:\Users\Guill\Dossier Boulot\Test-en-cours/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
-    <parameter key="security.role_hierarchy.roles" type="collection"/>
+    <parameter key="security.role_hierarchy.roles" type="collection">
+      <parameter key="ROLE_ADMIN" type="collection">
+        <parameter>ROLE_USER</parameter>
+        <parameter>ROLE_MODERATOR</parameter>
+      </parameter>
+    </parameter>
     <parameter key="security.access.denied_url">null</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
@@ -435,6 +440,14 @@
         <argument type="service" id=".service_locator.TJNRSaV.App\Controller\HelloWorldController"/>
       </call>
     </service>
+    <service id="App\Controller\PictureController" class="App\Controller\PictureController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="routing.controller"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.TJNRSaV.App\Controller\PictureController"/>
+      </call>
+    </service>
     <service id="App\Controller\PokemonController" class="App\Controller\PokemonController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="routing.controller"/>
@@ -478,6 +491,10 @@
         <argument type="service" id=".service_locator.TJNRSaV.App\Controller\UserController"/>
       </call>
     </service>
+    <service id="App\Entity\Picture" class="App\Entity\Picture" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
     <service id="App\Entity\Pokemon" class="App\Entity\Pokemon" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's a Doctrine entity"/>
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
@@ -507,6 +524,9 @@
     <service id="App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Form\PictureCreateFormType" class="App\Form\PictureCreateFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
     <service id="App\Form\PokemonCreateFormType" class="App\Form\PokemonCreateFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
@@ -521,6 +541,10 @@
     </service>
     <service id="App\Form\UserInfoFormType" class="App\Form\UserInfoFormType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
+    </service>
+    <service id="App\Repository\PictureRepository" class="App\Repository\PictureRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\PokemonRepository" class="App\Repository\PokemonRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -594,7 +618,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" priority="-50">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.nZ6f9R_"/>
+      <argument type="service" id=".service_locator.BNGzw.y"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" priority="-100">controller.argument_value_resolver</tag>
@@ -1610,6 +1634,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\ChangePasswordFormType</argument>
+        <argument>App\Form\PictureCreateFormType</argument>
         <argument>App\Form\PokemonCreateFormType</argument>
         <argument>App\Form\PokemonTypeCreateFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
@@ -3876,7 +3901,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.nZ6f9R_"/>
+      <argument type="service" id=".service_locator.BNGzw.y"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3953,6 +3978,7 @@
         <argument>App\Controller\AuthController</argument>
         <argument>App\Controller\DashboardController</argument>
         <argument>App\Controller\HelloWorldController</argument>
+        <argument>App\Controller\PictureController</argument>
         <argument>App\Controller\PokemonController</argument>
         <argument>App\Controller\PokemonTypeController</argument>
         <argument>App\Controller\RegistrationController</argument>
@@ -4495,7 +4521,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.HdDFnAB"/>
+      <argument type="service" id=".service_locator.2dwSvfX"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4605,6 +4631,7 @@
       <argument>%form.type_extension.csrf.field_attr%</argument>
       <argument type="collection">
         <argument key="App\Form\ChangePasswordFormType">submit</argument>
+        <argument key="App\Form\PictureCreateFormType">submit</argument>
         <argument key="App\Form\PokemonCreateFormType">submit</argument>
         <argument key="App\Form\PokemonTypeCreateFormType">submit</argument>
         <argument key="App\Form\RegistrationFormType">submit</argument>
@@ -5889,7 +5916,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.PmS.lJm"/>
+      <argument type="service" id=".service_locator.PGtbRlg"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7097,14 +7124,15 @@
       <argument type="service" id="request_stack"/>
     </service>
     <service id="security.role_hierarchy" class="Symfony\Component\Security\Core\Role\RoleHierarchy">
-      <argument type="collection"/>
-    </service>
-    <service id="security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleVoter">
-      <tag name="security.voter" priority="245"/>
+      <argument>%security.role_hierarchy.roles%</argument>
     </service>
     <service id="security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter">
       <tag name="security.voter" priority="250"/>
       <argument type="service" id="security.authentication.trust_resolver"/>
+    </service>
+    <service id="security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter">
+      <tag name="security.voter" priority="245"/>
+      <argument type="service" id="security.role_hierarchy"/>
     </service>
     <service id="security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter">
       <tag name="security.voter" priority="245"/>
@@ -7290,6 +7318,13 @@
         <argument type="service" id=".security.request_matcher.kVHa42H"/>
         <argument type="collection">
           <argument>ROLE_PROF</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.eHH97Q3"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -7894,6 +7929,14 @@
     <service id=".security.request_matcher.kVHa42H" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
         <argument type="service" id=".security.request_matcher.7IMblMh"/>
+      </argument>
+    </service>
+    <service id=".security.request_matcher.XKPRAlP" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/picture</argument>
+    </service>
+    <service id=".security.request_matcher.eHH97Q3" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.XKPRAlP"/>
       </argument>
     </service>
     <service id="security.command.user_password_hash" class="Symfony\Component\PasswordHasher\Command\UserPasswordHashCommand">
@@ -8543,6 +8586,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HelloWorldController" class="App\Controller\HelloWorldController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\HelloWorldController.0.App\Controller\HelloWorldController" class="App\Controller\HelloWorldController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HelloWorldController" class="App\Controller\HelloWorldController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PictureController" class="App\Controller\PictureController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PictureController" class="App\Controller\PictureController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\PictureController.0.App\Controller\PictureController" class="App\Controller\PictureController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PictureController" class="App\Controller\PictureController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PokemonController" class="App\Controller\PokemonController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PokemonController" class="App\Controller\PokemonController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\PokemonController.0.App\Controller\PokemonController" class="App\Controller\PokemonController" autowire="true" abstract="true"/>
@@ -8563,6 +8610,8 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\UserController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\Picture.0.App\Entity\Picture" class="App\Entity\Picture" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\Picture" class="App\Entity\Picture" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Pokemon.0.App\Entity\Pokemon" class="App\Entity\Pokemon" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\Pokemon" class="App\Entity\Pokemon" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\PokemonType.0.App\Entity\PokemonType" class="App\Entity\PokemonType" autowire="true" abstract="true"/>
@@ -8579,6 +8628,8 @@
     <service id=".abstract.instanceof.App\Factory\UserFactory" class="App\Factory\UserFactory" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordFormType" class="App\Form\ChangePasswordFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PictureCreateFormType" class="App\Form\PictureCreateFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PictureCreateFormType" class="App\Form\PictureCreateFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PokemonCreateFormType" class="App\Form\PokemonCreateFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PokemonCreateFormType" class="App\Form\PokemonCreateFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PokemonTypeCreateFormType" class="App\Form\PokemonTypeCreateFormType" autowire="true" abstract="true"/>
@@ -8589,6 +8640,8 @@
     <service id=".abstract.instanceof.App\Form\ResetPasswordRequestFormType" class="App\Form\ResetPasswordRequestFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserInfoFormType" class="App\Form\UserInfoFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserInfoFormType" class="App\Form\UserInfoFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PictureRepository" class="App\Repository\PictureRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\PictureRepository" class="App\Repository\PictureRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PokemonRepository" class="App\Repository\PokemonRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PokemonRepository" class="App\Repository\PokemonRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PokemonTypeRepository" class="App\Repository\PokemonTypeRepository" autowire="true" abstract="true"/>
@@ -9184,6 +9237,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.0MQaTBY" method="withContext"/>
     </service>
+    <service id=".service_locator..TL8LKF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="logger" type="service_closure" id="monolog.logger"/>
+      </argument>
+    </service>
+    <service id=".service_locator..TL8LKF.App\Controller\DashboardController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\DashboardController::index()"/>
+      <argument>App\Controller\DashboardController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator..TL8LKF" method="withContext"/>
+    </service>
     <service id=".service_locator.heJ666n" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -9195,6 +9260,37 @@
       <argument>App\Controller\HelloWorldController::sendMail()</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.heJ666n" method="withContext"/>
+    </service>
+    <service id=".service_locator.EKBF_kx" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="pictureRepository" type="service_closure" id="App\Repository\PictureRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.EKBF_kx.App\Controller\PictureController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PictureController::index()"/>
+      <argument>App\Controller\PictureController::index()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.EKBF_kx" method="withContext"/>
+    </service>
+    <service id=".value.KPXMRHt" class="mixed">
+      <argument type="collection">
+        <argument>C:\Users\Guill\Dossier Boulot\Test-en-cours/public/uploads/pictures</argument>
+      </argument>
+      <factory function="current"/>
+    </service>
+    <service id=".service_locator.L89usw4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="pictureDirectory" type="service_closure" id=".value.KPXMRHt"/>
+      </argument>
+    </service>
+    <service id=".service_locator.L89usw4.App\Controller\PictureController::create()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PictureController::create()"/>
+      <argument>App\Controller\PictureController::create()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.L89usw4" method="withContext"/>
     </service>
     <service id=".service_locator.qZAPP4G" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9246,11 +9342,19 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1rKo8fK" method="withContext"/>
     </service>
-    <service id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.DylOBcR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="pokemon" type="service_closure" id=".errored..service_locator.DylOBcR.App\Entity\Pokemon"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="logger" type="service_closure" id="monolog.logger"/>
+      </argument>
+    </service>
+    <service id=".service_locator.DylOBcR.App\Controller\PokemonController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PokemonController::delete()"/>
       <argument>App\Controller\PokemonController::delete()</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.1rKo8fK" method="withContext"/>
+      <factory service=".service_locator.DylOBcR" method="withContext"/>
     </service>
     <service id=".service_locator.08FVjDw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -9367,7 +9471,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.8m8R3s_" method="withContext"/>
     </service>
-    <service id=".service_locator.nZ6f9R_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.BNGzw.y" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
@@ -9375,12 +9479,15 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Controller\AuthController::login" type="service_closure" id=".service_locator.0MQaTBY.App\Controller\AuthController::login()"/>
+        <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator..TL8LKF.App\Controller\DashboardController::index()"/>
         <argument key="App\Controller\HelloWorldController::sendMail" type="service_closure" id=".service_locator.heJ666n.App\Controller\HelloWorldController::sendMail()"/>
+        <argument key="App\Controller\PictureController::index" type="service_closure" id=".service_locator.EKBF_kx.App\Controller\PictureController::index()"/>
+        <argument key="App\Controller\PictureController::create" type="service_closure" id=".service_locator.L89usw4.App\Controller\PictureController::create()"/>
         <argument key="App\Controller\PokemonController::index" type="service_closure" id=".service_locator.qZAPP4G.App\Controller\PokemonController::index()"/>
         <argument key="App\Controller\PokemonController::create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController::show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController::update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
-        <argument key="App\Controller\PokemonController::delete" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()"/>
+        <argument key="App\Controller\PokemonController::delete" type="service_closure" id=".service_locator.DylOBcR.App\Controller\PokemonController::delete()"/>
         <argument key="App\Controller\PokemonTypeController::index" type="service_closure" id=".service_locator.08FVjDw.App\Controller\PokemonTypeController::index()"/>
         <argument key="App\Controller\PokemonTypeController::handleCreate" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonTypeController::handleCreate()"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.3FWkHlB.App\Controller\RegistrationController::register()"/>
@@ -9394,12 +9501,15 @@
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Controller\AuthController:login" type="service_closure" id=".service_locator.0MQaTBY.App\Controller\AuthController::login()"/>
+        <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator..TL8LKF.App\Controller\DashboardController::index()"/>
         <argument key="App\Controller\HelloWorldController:sendMail" type="service_closure" id=".service_locator.heJ666n.App\Controller\HelloWorldController::sendMail()"/>
+        <argument key="App\Controller\PictureController:index" type="service_closure" id=".service_locator.EKBF_kx.App\Controller\PictureController::index()"/>
+        <argument key="App\Controller\PictureController:create" type="service_closure" id=".service_locator.L89usw4.App\Controller\PictureController::create()"/>
         <argument key="App\Controller\PokemonController:index" type="service_closure" id=".service_locator.qZAPP4G.App\Controller\PokemonController::index()"/>
         <argument key="App\Controller\PokemonController:create" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonController::create()"/>
         <argument key="App\Controller\PokemonController:show" type="service_closure" id=".service_locator.6u3CLkp.App\Controller\PokemonController::show()"/>
         <argument key="App\Controller\PokemonController:update" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::update()"/>
-        <argument key="App\Controller\PokemonController:delete" type="service_closure" id=".service_locator.1rKo8fK.App\Controller\PokemonController::delete()"/>
+        <argument key="App\Controller\PokemonController:delete" type="service_closure" id=".service_locator.DylOBcR.App\Controller\PokemonController::delete()"/>
         <argument key="App\Controller\PokemonTypeController:index" type="service_closure" id=".service_locator.08FVjDw.App\Controller\PokemonTypeController::index()"/>
         <argument key="App\Controller\PokemonTypeController:handleCreate" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\PokemonTypeController::handleCreate()"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.3FWkHlB.App\Controller\RegistrationController::register()"/>
@@ -9595,10 +9705,11 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.HdDFnAB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2dwSvfX" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
+        <argument key="App\Form\PictureCreateFormType" type="service_closure" id="App\Form\PictureCreateFormType"/>
         <argument key="App\Form\PokemonCreateFormType" type="service_closure" id="App\Form\PokemonCreateFormType"/>
         <argument key="App\Form\PokemonTypeCreateFormType" type="service_closure" id="App\Form\PokemonTypeCreateFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
@@ -9752,9 +9863,10 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.PmS.lJm" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.PGtbRlg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\PictureRepository" type="service_closure" id="App\Repository\PictureRepository"/>
         <argument key="App\Repository\PokemonRepository" type="service_closure" id="App\Repository\PokemonRepository"/>
         <argument key="App\Repository\PokemonTypeRepository" type="service_closure" id="App\Repository\PokemonTypeRepository"/>
         <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
@@ -9802,8 +9914,8 @@
       <argument type="service" id="security.access.authenticated_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
-    <service id=".debug.security.voter.security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
-      <argument type="service" id="security.access.simple_role_voter"/>
+    <service id=".debug.security.voter.security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
+      <argument type="service" id="security.access.role_hierarchy_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
     <service id=".debug.security.voter.security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
@@ -10060,6 +10172,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.TJNRSaV" method="withContext"/>
     </service>
+    <service id=".service_locator.TJNRSaV.App\Controller\PictureController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PictureController"/>
+      <argument>App\Controller\PictureController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.TJNRSaV" method="withContext"/>
+    </service>
     <service id=".service_locator.TJNRSaV.App\Controller\PokemonController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PokemonController"/>
       <argument>App\Controller\PokemonController</argument>
@@ -10300,6 +10418,7 @@
           <argument>App\Controller\AuthController</argument>
           <argument>App\Controller\DashboardController</argument>
           <argument>App\Controller\HelloWorldController</argument>
+          <argument>App\Controller\PictureController</argument>
           <argument>App\Controller\PokemonController</argument>
           <argument>App\Controller\PokemonTypeController</argument>
           <argument>App\Controller\RegistrationController</argument>
@@ -10502,7 +10621,7 @@
     <service id="debug.security.access.decision_manager.inner" class="Symfony\Component\Security\Core\Authorization\AccessDecisionManager">
       <argument type="iterator">
         <argument type="service" id=".debug.security.voter.security.access.authenticated_voter"/>
-        <argument type="service" id=".debug.security.voter.security.access.simple_role_voter"/>
+        <argument type="service" id=".debug.security.voter.security.access.role_hierarchy_voter"/>
         <argument type="service" id=".debug.security.voter.security.access.expression_voter"/>
         <argument type="service" id=".debug.security.voter.security.access.closure_voter"/>
         <argument type="service" id=".debug.security.voter.App\Security\Voter\PokemonVoter"/>
@@ -10554,6 +10673,9 @@
     </service>
     <service id=".errored..service_locator.1rKo8fK.App\Entity\Pokemon" class="App\Entity\Pokemon">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.1rKo8fK&quot;: it needs an instance of &quot;App\Entity\Pokemon&quot; but this type has been excluded because it's a Doctrine entity."/>
+    </service>
+    <service id=".errored..service_locator.DylOBcR.App\Entity\Pokemon" class="App\Entity\Pokemon">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.DylOBcR&quot;: it needs an instance of &quot;App\Entity\Pokemon&quot; but this type has been excluded because it's a Doctrine entity."/>
     </service>
     <service id=".errored..service_locator.JiqShSe.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.JiqShSe&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded because it's a Doctrine entity."/>
@@ -11850,7 +11972,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.ryAvHi4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.nZ6f9R_"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.BNGzw.y"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.W55Po6X"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".Psr\Log\LoggerInterface $request.logger" alias="monolog.logger.request"/>
@@ -11911,11 +12033,15 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.c0wzfI4" alias=".service_locator.1vYpZ1B"/>
     <service id=".service_locator.uBwBrvQ" alias=".service_locator.0MQaTBY"/>
+    <service id=".service_locator.3gZfU1F" alias=".service_locator..TL8LKF"/>
     <service id=".service_locator..XwZqG2" alias=".service_locator.heJ666n"/>
+    <service id=".service_locator.uzl54nx" alias=".service_locator.EKBF_kx"/>
+    <service id=".service_locator.yqSfzfB" alias=".service_locator.L89usw4"/>
     <service id=".service_locator.h1b9.Z8" alias=".service_locator.qZAPP4G"/>
     <service id=".service_locator.UOV1jy9" alias=".service_locator.3BoFVFw"/>
     <service id=".service_locator.qKrOWZF" alias=".service_locator.6u3CLkp"/>
     <service id=".service_locator.UqTWx4U" alias=".service_locator.1rKo8fK"/>
+    <service id=".service_locator.3d88mUd" alias=".service_locator.DylOBcR"/>
     <service id=".service_locator.ZrbrR7M" alias=".service_locator.08FVjDw"/>
     <service id=".service_locator.tPNZaCD" alias=".service_locator.3FWkHlB"/>
     <service id=".service_locator.mZB7AST" alias=".service_locator.UDxVJk_"/>

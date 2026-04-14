@@ -20,6 +20,8 @@ return [
         '/' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
         '/hello/world' => [[['_route' => 'app_hello_world', '_controller' => 'App\\Controller\\HelloWorldController::index'], null, null, null, false, false, null]],
         '/mail' => [[['_route' => 'app_test_mail', '_controller' => 'App\\Controller\\HelloWorldController::sendMail'], null, null, null, false, false, null]],
+        '/picture' => [[['_route' => 'app_picture_index', '_controller' => 'App\\Controller\\PictureController::index'], null, null, null, true, false, null]],
+        '/picture/create' => [[['_route' => 'app_picture_create', '_controller' => 'App\\Controller\\PictureController::create'], null, null, null, false, false, null]],
         '/pokemon' => [[['_route' => 'app_pokemon_index', '_controller' => 'App\\Controller\\PokemonController::index'], null, null, null, true, false, null]],
         '/pokemon/create' => [[['_route' => 'app_pokemon_create', '_controller' => 'App\\Controller\\PokemonController::create'], null, null, null, false, false, null]],
         '/type' => [[['_route' => 'app_type', '_controller' => 'App\\Controller\\PokemonTypeController::index'], null, null, null, false, false, null]],
