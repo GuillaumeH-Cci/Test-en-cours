@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Picture;
 use App\Form\PictureCreateFormType;
+use App\Repository\PictureRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,13 +18,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class PictureController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(PictureRepository $pictureRepository): Response
     {
+        $arrPictures = $pictureRepository->findAll();
+
         return $this->render('picture/index.html.twig', [
-            'controller_name' => 'PictureController',
+            'pictures'  => $arrPictures    
         ]);
     }
-
     
     #[Route('/create', name: 'create')]
     public function create(Request $request, EntityManagerInterface $entityManager,
@@ -40,11 +42,19 @@ final class PictureController extends AbstractController
             /** @var UploadedFile $objUploadedFile */
             $objUploadedFile = $formCreate->get('filename')->getData();
 
+            // Création d'un nom unique pour l'image (le fichier final)
+
+            // On récupère le nom du fichier sans l'extension (.png, .jpg...)
+            $strBasefileName = pathinfo($objUploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+            // On accolle uniqid pour rendre unique le nom + l'extension du fichier (PNG, JPG...)
+            $strNewFilename = $strBasefileName . uniqid() . '.' . $objUploadedFile->guessExtension();
+
             // Déplace le fichier dans le répertoire /public/uploads/pictures
-            $objUploadedFile->move($pictureDirectory, $objUploadedFile->getClientOriginalName());
+            $objUploadedFile->move($pictureDirectory, $strNewFilename);
 
             // Définit les attributs de l'entité Picture
-            $objPicture->setFilename($objUploadedFile->getClientOriginalName())
+            $objPicture->setFilename($strNewFilename)
                 ->setCreatedAt(new DateTimeImmutable('now'))
                 ->setTakenBy($this->getUser()); //< $this->getUser() : récupère l'utlisateur connecté à l'application
 
